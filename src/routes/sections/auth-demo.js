@@ -51,13 +51,28 @@ const authClassic = {
       ),
     },
     {
+      path: 'forgot-password',
+      element: (
+        <AuthClassicLayout hideRightSection>
+          <ForgotPasswordClassicPage />
+        </AuthClassicLayout>
+      ),
+    },
+    {
+      path: 'new-password',
+      element: (
+        <AuthClassicLayout hideRightSection>
+          <NewPasswordClassicPage />
+        </AuthClassicLayout>
+      ),
+    },
+    {
       element: (
         <CompactLayout>
           <Outlet />
         </CompactLayout>
       ),
       children: [
-        { path: 'forgot-password', element: <ForgotPasswordClassicPage /> },
         { path: 'new-password', element: <NewPasswordClassicPage /> },
         { path: 'verify', element: <VerifyClassicPage /> },
       ],

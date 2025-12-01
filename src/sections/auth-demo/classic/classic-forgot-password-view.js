@@ -83,8 +83,8 @@ export default function ClassicForgotPasswordView() {
   );
 
   const renderHead = (
-    <Stack spacing={1} sx={{ my: 2, padding: `2rem` }}>
-      <Typography variant="h3">Forgot Password?</Typography>
+    <Stack spacing={1} sx={{ my: 2, padding: `1rem` }}>
+      <Typography variant="h3">Forget Password?</Typography>
 
       <Typography variant="body2">No Worries, we’ll send you, reset instructions.</Typography>
     </Stack>

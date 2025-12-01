@@ -107,6 +107,12 @@ export default function ClassicNewPasswordView() {
         fullWidth
         size="large"
         type="submit"
+        sx={{
+          backgroundColor: '#016BFF',
+          '&:hover': {
+            backgroundColor: '#0152CC',
+          },
+        }}
         variant="contained"
         loading={isSubmitting}
       >
@@ -118,6 +124,7 @@ export default function ClassicNewPasswordView() {
         <Link
           variant="subtitle2"
           sx={{
+            color: '#016BFF',
             cursor: 'pointer',
           }}
         >
@@ -142,26 +149,28 @@ export default function ClassicNewPasswordView() {
   );
 
   const renderHead = (
-    <>
-      <SentIcon sx={{ height: 96 }} />
+    <Stack spacing={1} sx={{ my: 5 }}>
+      <Typography variant="h3">Request Sent Successfully!</Typography>
 
-      <Stack spacing={1} sx={{ my: 5 }}>
-        <Typography variant="h3">Request sent successfully!</Typography>
-
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          We&apos;ve sent a 6-digit confirmation email to your email.
-          <br />
-          Please enter the code in below box to verify your email.
-        </Typography>
-      </Stack>
-    </>
+      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        Enter the 6-digit verification code sent to your email
+      </Typography>
+    </Stack>
   );
 
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
-      {renderHead}
-
-      {renderForm}
+      <Stack
+        sx={{
+          backgroundColor: 'white',
+          border: '1px solid #E0E0E0',
+          borderRadius: '10px',
+          padding: '1rem',
+        }}
+      >
+        {renderHead}
+        {renderForm}
+      </Stack>
     </FormProvider>
   );
 }

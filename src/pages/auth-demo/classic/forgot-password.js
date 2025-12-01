@@ -11,7 +11,7 @@ export default function ClassicForgotPasswordPage() {
         <title> Auth Classic: Forgot Password</title>
       </Helmet>
 
-      <ClassicForgotPasswordView sx={{ background: `black` }} />
+      <ClassicForgotPasswordView sx={{ backgroundColor: `white` }} />
     </>
   );
 }

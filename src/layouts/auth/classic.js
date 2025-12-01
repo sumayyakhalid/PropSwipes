@@ -47,7 +47,7 @@ const METHODS = [
   },
 ];
 
-export default function AuthClassicLayout({ children, image, title }) {
+export default function AuthClassicLayout({ children, image, title, hideRightSection = false }) {
   const { method } = useAuthContext();
 
   const theme = useTheme();
@@ -69,10 +69,13 @@ export default function AuthClassicLayout({ children, image, title }) {
       sx={{
         width: 1,
         mx: 'auto',
-        backgroundImage: `url('/assets/illustrations/illustration_dashboard.jpg')`,
+        backgroundImage: hideRightSection
+          ? 'none'
+          : `url('/assets/illustrations/illustration_dashboard.jpg')`,
         maxWidth: 480,
-        px: { xs: 2, md: 8 },
+        px: { xs: 0.5, md: 1 },
         py: { xs: 15, md: 30 },
+        backgroundColor: 'white',
       }}
     >
       {children}
@@ -101,11 +104,19 @@ export default function AuthClassicLayout({ children, image, title }) {
   );
 
   return (
-    <Stack component="main" direction="row">
+    <Stack
+      component="main"
+      direction="row"
+      sx={{
+        backgroundImage: hideRightSection
+          ? `url('/assets/illustrations/illustration_dashboard.jpg')`
+          : 'none',
+      }}
+    >
       {/* {renderLogo} */}
 
       {renderContent}
-      {upMd && renderSection}
+      {upMd && !hideRightSection && renderSection}
     </Stack>
   );
 }
@@ -114,4 +125,5 @@ AuthClassicLayout.propTypes = {
   children: PropTypes.node,
   image: PropTypes.string,
   title: PropTypes.string,
+  hideRightSection: PropTypes.bool,
 };

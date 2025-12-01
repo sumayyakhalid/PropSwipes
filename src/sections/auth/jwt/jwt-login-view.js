@@ -28,7 +28,7 @@ import FormProvider, { RHFCheckbox, RHFTextField } from 'src/components/hook-for
 // ----------------------------------------------------------------------
 
 export default function JwtLoginView() {
-  const { login } = useAuthContext();
+  // const { login } = useAuthContext();
 
   const router = useRouter();
 
@@ -47,7 +47,7 @@ export default function JwtLoginView() {
 
   const defaultValues = {
     email: 'demo@minimals.cc',
-    password: 'demo1234',
+    password: '2@Minimal',
   };
 
   const methods = useForm({
@@ -61,16 +61,17 @@ export default function JwtLoginView() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await login?.(data.email, data.password);
-
-      router.push(returnTo || PATH_AFTER_LOGIN);
-    } catch (error) {
-      console.error(error);
-      reset();
-      setErrorMsg(typeof error === 'string' ? error : error.message);
-    }
+  const onSubmit = handleSubmit(async () => {
+    // try {
+    //   await login?.(data.email, data.password);
+    //   router.push(returnTo || PATH_AFTER_LOGIN);
+    // } catch (error) {
+    //   console.error(error);
+    //   reset();
+    //   setErrorMsg(typeof error === 'string' ? error : error.message);
+    // }
+    // Demo only: skip real authentication and go straight to dashboard
+    router.push(returnTo || PATH_AFTER_LOGIN);
   });
 
   const renderHead = (
@@ -134,7 +135,7 @@ export default function JwtLoginView() {
   );
 
   return (
-    <FormProvider methods={methods} onSubmit={onSubmit} sx={{ backgroundColor: 'blue' }}>
+    <FormProvider methods={methods} onSubmit={onSubmit}>
       {renderHead}
       {renderForm}
     </FormProvider>
