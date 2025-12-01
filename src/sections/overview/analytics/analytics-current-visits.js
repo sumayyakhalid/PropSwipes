@@ -4,6 +4,7 @@ import { useTheme, styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
 import Card from '@mui/material/Card';
 // utils
+import { Divider } from '@mui/material';
 import { fNumber } from 'src/utils/format-number';
 // components
 import Chart, { useChart } from 'src/components/chart';
@@ -80,9 +81,16 @@ export default function AnalyticsCurrentVisits({ title, subheader, chart, ...oth
 
   return (
     <Card {...other}>
-      <CardHeader title={title} subheader={subheader} sx={{ mb: 5 }} />
-
-      <StyledChart dir="ltr" type="pie" series={chartSeries} options={chartOptions} height={280} />
+      <CardHeader title={title} subheader={subheader} sx={{ mb: 1 }} />
+      <Divider />
+      <StyledChart
+        dir="ltr"
+        type="pie"
+        series={chartSeries}
+        options={chartOptions}
+        height={280}
+        // sx={{ mt: 1 }}
+      />
     </Card>
   );
 }

@@ -130,13 +130,17 @@ export const _analyticTraffic = [
 // ECOMMERCE
 // ----------------------------------------------------------------------
 
-export const _ecommerceSalesOverview = ['Total Profit', 'Total Income', 'Total Expenses'].map(
-  (label, index) => ({
-    label,
-    totalAmount: _mock.number.price(index) * 100,
-    value: _mock.number.percent(index),
-  })
-);
+export const _reviewStatusOverview = [
+  'Total Matches',
+  'Total Dislikes',
+  'Listings with no Matches',
+  'Rented Listings',
+  'OnSale Listings',
+].map((label, index) => ({
+  label,
+  totalAmount: _mock.number.price(index) * 100,
+  value: _mock.number.percent(index),
+}));
 
 export const _ecommerceBestSalesman = [...Array(5)].map((_, index) => {
   const category = ['CAP', 'Branded Shoes', 'Headphone', 'Cell Phone', 'Earings'][index];

@@ -8,9 +8,9 @@ import { useMockedUser } from 'src/hooks/use-mocked-user';
 // _mock
 import {
   _ecommerceNewProducts,
-  _ecommerceSalesOverview,
   _ecommerceBestSalesman,
   _ecommerceLatestProducts,
+  _reviewStatusOverview,
 } from 'src/_mock';
 // components
 import { useSettingsContext } from 'src/components/settings';
@@ -156,7 +156,7 @@ export default function OverviewEcommerceView() {
         </Grid>
 
         <Grid xs={12} md={6} lg={8}>
-          <EcommerceSalesOverview title="Sales Overview" data={_ecommerceSalesOverview} />
+          <EcommerceSalesOverview title="Sales Overview" data={_reviewStatusOverview} />
         </Grid>
 
         <Grid xs={12} md={6} lg={4}>

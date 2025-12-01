@@ -68,32 +68,48 @@ export default function AccountPopover() {
 
   return (
     <>
-      <IconButton
-        component={m.button}
-        whileTap="tap"
-        whileHover="hover"
-        variants={varHover(1.05)}
-        onClick={popover.onOpen}
+      <Box
         sx={{
-          width: 40,
-          height: 40,
-          background: (theme) => alpha(theme.palette.grey[500], 0.08),
-          ...(popover.open && {
-            background: (theme) =>
-              `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
-          }),
+          backgroundColor: '#DAF4FD',
+          borderRadius: '1rem',
+          display: 'flex',
+          p: 1,
         }}
       >
-        <Avatar
-          src={user?.photoURL}
-          alt={user?.displayName}
+        <IconButton
+          component={m.button}
+          whileTap="tap"
+          whileHover="hover"
+          variants={varHover(1.05)}
+          onClick={popover.onOpen}
           sx={{
-            width: 36,
-            height: 36,
-            border: (theme) => `solid 2px ${theme.palette.background.default}`,
+            width: 40,
+            height: 40,
+            background: (theme) => alpha(theme.palette.grey[500], 0.08),
+            ...(popover.open && {
+              background: (theme) =>
+                `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
+            }),
           }}
-        />
-      </IconButton>
+        >
+          <Avatar
+            src={user?.photoURL}
+            alt={user?.displayName}
+            sx={{
+              width: 36,
+              height: 36,
+              border: (theme) => `solid 2px ${theme.palette.background.default}`,
+            }}
+          />
+        </IconButton>
+
+        <Box sx={{ px: 1 }}>
+          <Typography variant="subtitle2">{user?.displayName}</Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+            Admin
+          </Typography>
+        </Box>
+      </Box>
 
       <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 200, p: 0 }}>
         <Box sx={{ p: 2, pb: 1.5 }}>

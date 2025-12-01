@@ -6,15 +6,16 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import LinearProgress from '@mui/material/LinearProgress';
 // utils
+import { Divider } from '@mui/material';
 import { fPercent, fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function EcommerceSalesOverview({ title, subheader, data, ...other }) {
+export default function ReviewStatusOverview({ title, subheader, data, ...other }) {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
-
+      <Divider />
       <Stack spacing={4} sx={{ px: 3, pt: 3, pb: 5 }}>
         {data.map((progress) => (
           <ProgressItem key={progress.label} progress={progress} />
@@ -24,7 +25,7 @@ export default function EcommerceSalesOverview({ title, subheader, data, ...othe
   );
 }
 
-EcommerceSalesOverview.propTypes = {
+ReviewStatusOverview.propTypes = {
   data: PropTypes.array,
   subheader: PropTypes.string,
   title: PropTypes.string,
@@ -40,11 +41,7 @@ function ProgressItem({ progress }) {
           {progress.label}
         </Typography>
 
-        <Typography variant="subtitle2">{fCurrency(progress.totalAmount)}</Typography>
-
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          &nbsp;({fPercent(progress.value)})
-        </Typography>
+        <Typography variant="subtitle2">{progress.totalAmount}</Typography>
       </Stack>
 
       <LinearProgress

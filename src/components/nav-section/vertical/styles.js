@@ -15,11 +15,10 @@ export const StyledItem = styled(ListItemButton, {
 
   const activeStyles = {
     root: {
-      color:
-        theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.light,
-      backgroundColor: alpha(theme.palette.primary.main, 0.08),
+      color: '#006BFF',
+      backgroundColor: '#DAF4FD',
       '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, 0.16),
+        backgroundColor: '#DAF4FD',
       },
     },
     sub: {

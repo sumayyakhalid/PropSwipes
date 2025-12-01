@@ -6,6 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 // theme
+import { Box } from '@mui/material';
 import { bgBlur } from 'src/theme/css';
 // hooks
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
@@ -16,14 +17,7 @@ import SvgColor from 'src/components/svg-color';
 import { useSettingsContext } from 'src/components/settings';
 //
 import { HEADER, NAV } from '../config-layout';
-import {
-  Searchbar,
-  AccountPopover,
-  SettingsButton,
-  LanguagePopover,
-  ContactsPopover,
-  NotificationsPopover,
-} from '../_common';
+import { Searchbar, AccountPopover, NotificationsPopover } from '../_common';
 
 // ----------------------------------------------------------------------
 
@@ -61,13 +55,9 @@ export default function Header({ onOpenNav }) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
-        <LanguagePopover />
-
-        <NotificationsPopover />
-
-        <ContactsPopover />
-
-        <SettingsButton />
+        <Box sx={{ backgroundColor: '#DAF4FD', borderRadius: '1rem', p: '0.5rem' }}>
+          <NotificationsPopover />
+        </Box>
 
         <AccountPopover />
       </Stack>
