@@ -28,24 +28,6 @@ import NotificationItem from './notification-item';
 
 // ----------------------------------------------------------------------
 
-const TABS = [
-  {
-    value: 'all',
-    label: 'All',
-    count: 22,
-  },
-  {
-    value: 'unread',
-    label: 'Unread',
-    count: 12,
-  },
-  {
-    value: 'archived',
-    label: 'Archived',
-    count: 10,
-  },
-];
-
 // ----------------------------------------------------------------------
 
 export default function NotificationsPopover() {
@@ -74,17 +56,10 @@ export default function NotificationsPopover() {
 
   const renderHead = (
     <Stack direction="row" alignItems="center" sx={{ py: 2, pl: 2.5, pr: 1, minHeight: 68 }}>
-      <Typography variant="h6" sx={{ flexGrow: 1 }}>
+      <img src="/assets/icons/components/notification.svg" alt="notification" />
+      <Typography variant="h6" sx={{ flexGrow: 1, mx: 1 }}>
         Notifications
       </Typography>
-
-      {!!totalUnRead && (
-        <Tooltip title="Mark all as read">
-          <IconButton color="primary" onClick={handleMarkAllAsRead}>
-            <Iconify icon="eva:done-all-fill" />
-          </IconButton>
-        </Tooltip>
-      )}
 
       {!smUp && (
         <IconButton onClick={drawer.onFalse}>
@@ -92,36 +67,6 @@ export default function NotificationsPopover() {
         </IconButton>
       )}
     </Stack>
-  );
-
-  const renderTabs = (
-    <Tabs value={currentTab} onChange={handleChangeTab}>
-      {TABS.map((tab) => (
-        <Tab
-          key={tab.value}
-          iconPosition="end"
-          value={tab.value}
-          label={tab.label}
-          icon={
-            <Label
-              variant={((tab.value === 'all' || tab.value === currentTab) && 'filled') || 'soft'}
-              color={
-                (tab.value === 'unread' && 'info') ||
-                (tab.value === 'archived' && 'success') ||
-                'default'
-              }
-            >
-              {tab.count}
-            </Label>
-          }
-          sx={{
-            '&:not(:last-of-type)': {
-              mr: 3,
-            },
-          }}
-        />
-      ))}
-    </Tabs>
   );
 
   const renderList = (
@@ -161,20 +106,6 @@ export default function NotificationsPopover() {
         }}
       >
         {renderHead}
-
-        <Divider />
-
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ pl: 2.5, pr: 1 }}
-        >
-          {renderTabs}
-          <IconButton onClick={handleMarkAllAsRead}>
-            <Iconify icon="solar:settings-bold-duotone" />
-          </IconButton>
-        </Stack>
 
         <Divider />
 

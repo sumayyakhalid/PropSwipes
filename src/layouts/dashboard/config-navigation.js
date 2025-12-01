@@ -42,7 +42,7 @@ export function useNavData() {
           },
           {
             title: t('subscriber management'),
-            path: paths.dashboard.general.ecommerce,
+            path: paths.dashboard.subscriberManagement,
             icon: ICONS.subscriberManagement,
           },
           {
