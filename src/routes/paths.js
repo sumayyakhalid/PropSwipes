@@ -99,7 +99,6 @@ export const paths = {
     calendar: `${ROOTS.DASHBOARD}/calendar`,
     fileManager: `${ROOTS.DASHBOARD}/file-manager`,
     permission: `${ROOTS.DASHBOARD}/permission`,
-    subscriberManagement: `${ROOTS.DASHBOARD}/subscriber-management`,
     flaggedConversations: `${ROOTS.DASHBOARD}/flagged-conversations`,
     listingsManagement: `${ROOTS.DASHBOARD}/listings-management`,
     settings: `${ROOTS.DASHBOARD}/settings`,
@@ -111,6 +110,15 @@ export const paths = {
       banking: `${ROOTS.DASHBOARD}/banking`,
       booking: `${ROOTS.DASHBOARD}/booking`,
       file: `${ROOTS.DASHBOARD}/file`,
+    },
+    subscriberManagement: {
+      root: `${ROOTS.DASHBOARD}/subscriber-management`,
+      new: `${ROOTS.DASHBOARD}/subscriber-management/new`,
+      list: `${ROOTS.DASHBOARD}/subscriber-management/list`,
+      cards: `${ROOTS.DASHBOARD}/subscriber-management/cards`,
+      profile: `${ROOTS.DASHBOARD}/subscriber-management/profile`,
+      account: `${ROOTS.DASHBOARD}/subscriber-management/account`,
+      edit: (id) => `${ROOTS.DASHBOARD}/subscriber-management/${id}/edit`,
     },
     user: {
       root: `${ROOTS.DASHBOARD}/user`,

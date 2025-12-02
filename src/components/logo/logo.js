@@ -25,7 +25,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
       component="img"
       src="/logo/propSwipe_logo.svg"
       alt="logo"
-      sx={{ width: 200, height: 80, cursor: 'pointer', ...sx }}
+      sx={{ width: 200, height: 80, cursor: 'pointer', ...sx, ml: 2 }}
     />
   );
 

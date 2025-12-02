@@ -70,7 +70,7 @@ export default function AccountPopover() {
     <>
       <Box
         sx={{
-          backgroundColor: '#DAF4FD',
+          backgroundColor: ' #046AF71A',
           borderRadius: '1rem',
           display: 'flex',
           p: 1,

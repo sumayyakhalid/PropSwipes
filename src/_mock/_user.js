@@ -144,7 +144,10 @@ export const _userList = [...Array(20)].map((_, index) => ({
   zipCode: '85807',
   state: 'Virginia',
   city: 'Rancho Cordova',
+  createdAt: '10-2-25',
+  plan: 'premium',
   role: _mock.role(index),
+
   email: _mock.email(index),
   address: '908 Jack Locks',
   name: _mock.fullName(index),
@@ -153,6 +156,7 @@ export const _userList = [...Array(20)].map((_, index) => ({
   country: countries[index + 1].label,
   avatarUrl: _mock.image.avatar(index),
   phoneNumber: _mock.phoneNumber(index),
+
   status:
     (index % 2 && 'pending') || (index % 3 && 'banned') || (index % 4 && 'rejected') || 'active',
 }));

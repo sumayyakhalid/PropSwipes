@@ -113,7 +113,7 @@ export default function OverviewAppView() {
             }}
           />
         </Grid>
-        <Grid xs={12} md={6} lg={8} sx={{ height: '100%', bgColor: 'red' }}>
+        <Grid xs={12} md={6} lg={8}>
           <ReviewStatusOverview title="Listing Overview Status" data={_reviewStatusOverview} />
         </Grid>
       </Grid>

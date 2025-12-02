@@ -55,7 +55,7 @@ export default function Header({ onOpenNav }) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
-        <Box sx={{ backgroundColor: '#DAF4FD', borderRadius: '1rem', p: '0.5rem' }}>
+        <Box sx={{ backgroundColor: '#046AF71A', borderRadius: '1rem', p: '0.5rem' }}>
           <NotificationsPopover />
         </Box>
 

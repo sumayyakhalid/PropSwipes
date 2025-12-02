@@ -90,7 +90,13 @@ export default function NotificationsPopover() {
         onClick={drawer.onTrue}
       >
         <Badge badgeContent={totalUnRead} color="error">
-          <Iconify icon="solar:bell-bing-bold-duotone" width={24} />
+          <img
+            src="/assets/icons/components/notification_header.svg"
+            alt="notification"
+            width={24}
+            height={24}
+            style={{ objectFit: 'contain' }}
+          />
         </Badge>
       </IconButton>
 

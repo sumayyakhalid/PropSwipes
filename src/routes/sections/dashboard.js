@@ -6,7 +6,7 @@ import { AuthGuard } from 'src/auth/guard';
 import DashboardLayout from 'src/layouts/dashboard';
 // components
 import { LoadingScreen } from 'src/components/loading-screen';
-import { SubscriberManagementView } from 'src/sections/subscribers/view';
+import { UserCreateView, UserListView } from 'src/sections/subscriber/view';
 
 // ----------------------------------------------------------------------
 
@@ -156,7 +156,8 @@ export const dashboardRoutes = [
         ],
       },
       { path: 'file-manager', element: <FileManagerPage /> },
-      { path: 'subscriber-management', element: <SubscriberManagementView /> },
+      { path: 'subscriber-management', element: <UserListView /> },
+      { path: 'subscriber-management/new', element: <UserCreateView /> },
       { path: 'mail', element: <MailPage /> },
       { path: 'chat', element: <ChatPage /> },
       { path: 'calendar', element: <CalendarPage /> },

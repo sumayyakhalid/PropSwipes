@@ -13,7 +13,7 @@ import { fPercent, fCurrency } from 'src/utils/format-number';
 
 export default function ReviewStatusOverview({ title, subheader, data, ...other }) {
   return (
-    <Card {...other}>
+    <Card {...other} sx={{ height: '100%' }}>
       <CardHeader title={title} subheader={subheader} />
       <Divider />
       <Stack spacing={4} sx={{ px: 3, pt: 3, pb: 5 }}>
