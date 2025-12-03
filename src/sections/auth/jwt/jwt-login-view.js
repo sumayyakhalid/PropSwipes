@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 // routes
-import { Box, Checkbox } from '@mui/material';
+import { Box } from '@mui/material';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { useSearchParams, useRouter } from 'src/routes/hooks';
@@ -20,7 +20,6 @@ import { PATH_AFTER_LOGIN } from 'src/config-global';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // auth
-import { useAuthContext } from 'src/auth/hooks';
 // components
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFCheckbox, RHFTextField } from 'src/components/hook-form';
@@ -109,7 +108,7 @@ export default function JwtLoginView() {
           color="inherit"
           underline="always"
           sx={{ alignSelf: 'flex-end' }}
-          href={paths.authDemo.classic.forgotPassword}
+          href={paths.auth.jwt.forgotPassword}
           component={RouterLink}
         >
           Forgot password?
