@@ -125,9 +125,9 @@ export const paths = {
     },
   },
   subscriberManagement: {
-    root: '/subscriber-management',
+    root: `/subscriber-management`,
     new: `/subscriber-management/new`,
-    // edit: (id) => `${ROOTS.DASHBOARD}/subscriber-management/${id}/edit`,
+    detail: (id) => `/subscriber-management/${id}/subscriber-detail`,
   },
   flaggedConversations: {
     root: '/flagged-conversations',

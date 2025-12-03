@@ -17,12 +17,16 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
+export default function UserTableRow({
+  row,
+  selected,
+  assignSubscriptionDialog,
+  onDeleteRow,
+  onAssignSubscription,
+}) {
   const { name, role, address, phoneNumber, createdAt, plan, status } = row;
 
   const confirm = useBoolean();
-
-  const quickEdit = useBoolean();
 
   const popover = usePopover();
 
@@ -72,27 +76,28 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         open={popover.open}
         onClose={popover.onClose}
         arrow="right-top"
-        sx={{ width: 140 }}
+        sx={{ width: 150 }}
       >
         <MenuItem
           onClick={() => {
             confirm.onTrue();
             popover.onClose();
           }}
-          sx={{ color: 'error.main' }}
         >
-          <Iconify icon="solar:trash-bin-trash-bold" />
-          Delete
+          View Profile
         </MenuItem>
 
         <MenuItem
           onClick={() => {
-            onEditRow();
+            if (onAssignSubscription) {
+              onAssignSubscription();
+            } else {
+              assignSubscriptionDialog.onTrue();
+            }
             popover.onClose();
           }}
         >
-          <Iconify icon="solar:pen-bold" />
-          Edit
+          Assign Subscription
         </MenuItem>
       </CustomPopover>
 
@@ -113,8 +118,8 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
 
 UserTableRow.propTypes = {
   onDeleteRow: PropTypes.func,
-  onEditRow: PropTypes.func,
-  onSelectRow: PropTypes.func,
   row: PropTypes.object,
   selected: PropTypes.bool,
+  assignSubscriptionDialog: PropTypes.object,
+  onAssignSubscription: PropTypes.func,
 };

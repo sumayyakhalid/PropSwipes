@@ -7,6 +7,7 @@ import DashboardLayout from 'src/layouts/dashboard';
 // components
 import { LoadingScreen } from 'src/components/loading-screen';
 import { UserCreateView, UserListView } from 'src/sections/subscriber/view';
+import UserDetailPage from 'src/pages/dashboard/subscriber/subscriber-detail';
 
 // ----------------------------------------------------------------------
 
@@ -160,6 +161,7 @@ export const dashboardRoutes = [
         children: [
           { element: <UserListView />, index: true },
           { path: 'new', element: <UserCreateView /> },
+          { path: ':id/subscriber-detail', element: <UserDetailPage /> },
         ],
       },
 

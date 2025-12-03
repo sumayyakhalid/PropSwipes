@@ -1,9 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import { useState, useCallback } from 'react';
 // @mui
-import { alpha } from '@mui/material/styles';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
 import Card from '@mui/material/Card';
 import Table from '@mui/material/Table';
 import Button from '@mui/material/Button';
@@ -18,7 +15,7 @@ import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 // _mock
-import { _userList, _roles, USER_STATUS_OPTIONS } from 'src/_mock';
+import { _userList, USER_STATUS_OPTIONS } from 'src/_mock';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
 // component
@@ -43,6 +40,7 @@ import UserTableToolbar from '../user-table-toolbar';
 import UserTableFiltersResult from '../user-table-filters-result';
 import GrantSubscriptionDialog from '../grant-subscription/grant-subscription-dialog';
 import RejecttSubscriptionDialog from '../grant-subscription/reject-listing-dialog';
+import AssignSubscriptionDialog from '../grant-subscription/assign-subscription-dialog';
 
 // ----------------------------------------------------------------------
 
@@ -77,6 +75,8 @@ const defaultFilters = {
 export default function UserListView() {
   const grantSubscriptionDialog = useBoolean(false);
   const rejectSubscriptionDialog = useBoolean(false);
+  const assignSubscriptionDialog = useBoolean(false);
+  const [selectedRow, setSelectedRow] = useState(null);
   const table = useTable();
 
   const settings = useSettingsContext();
@@ -143,13 +143,6 @@ export default function UserListView() {
       router.push(paths.dashboard.user.edit(id));
     },
     [router]
-  );
-
-  const handleFilterStatus = useCallback(
-    (event, newValue) => {
-      handleFilters('status', newValue);
-    },
-    [handleFilters]
   );
 
   const handleResetFilters = useCallback(() => {
@@ -261,6 +254,11 @@ export default function UserListView() {
                         onSelectRow={() => table.onSelectRow(row.id)}
                         onDeleteRow={() => handleDeleteRow(row.id)}
                         onEditRow={() => handleEditRow(row.id)}
+                        assignSubscriptionDialog={assignSubscriptionDialog}
+                        onAssignSubscription={() => {
+                          setSelectedRow(row);
+                          assignSubscriptionDialog.onTrue();
+                        }}
                       />
                     ))}
 
@@ -316,6 +314,12 @@ export default function UserListView() {
       )}
       {rejectSubscriptionDialog.value && (
         <RejecttSubscriptionDialog rejectSubscriptionDialog={rejectSubscriptionDialog} />
+      )}
+      {assignSubscriptionDialog.value && (
+        <AssignSubscriptionDialog
+          assignSubscriptionDialog={assignSubscriptionDialog}
+          row={selectedRow}
+        />
       )}
     </>
   );
