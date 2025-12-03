@@ -42,6 +42,7 @@ import UserTableRow from '../user-table-row';
 import UserTableToolbar from '../user-table-toolbar';
 import UserTableFiltersResult from '../user-table-filters-result';
 import GrantSubscriptionDialog from '../grant-subscription/grant-subscription-dialog';
+import RejecttSubscriptionDialog from '../grant-subscription/reject-listing-dialog';
 
 // ----------------------------------------------------------------------
 
@@ -75,6 +76,7 @@ const defaultFilters = {
 
 export default function UserListView() {
   const grantSubscriptionDialog = useBoolean(false);
+  const rejectSubscriptionDialog = useBoolean(false);
   const table = useTable();
 
   const settings = useSettingsContext();
@@ -175,7 +177,7 @@ export default function UserListView() {
               </Button>
               <Button
                 component={RouterLink}
-                href={paths.dashboard.subscriberManagement.new}
+                href={paths.subscriberManagement.new}
                 variant="contained"
                 sx={{
                   backgroundColor: '#046AF7',
@@ -307,7 +309,13 @@ export default function UserListView() {
         }
       />
       {grantSubscriptionDialog.value && (
-        <GrantSubscriptionDialog grantSubscriptionDialog={grantSubscriptionDialog} />
+        <GrantSubscriptionDialog
+          grantSubscriptionDialog={grantSubscriptionDialog}
+          rejectSubscriptionDialog={rejectSubscriptionDialog}
+        />
+      )}
+      {rejectSubscriptionDialog.value && (
+        <RejecttSubscriptionDialog rejectSubscriptionDialog={rejectSubscriptionDialog} />
       )}
     </>
   );

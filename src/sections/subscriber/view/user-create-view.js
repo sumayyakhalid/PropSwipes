@@ -20,7 +20,7 @@ export default function UserCreateView() {
         links={[
           {
             name: 'Subscriber List',
-            href: paths.dashboard.subscriberManagement.root,
+            href: paths.subscriberManagement.root,
           },
 
           { name: 'Create New Subscriber' },

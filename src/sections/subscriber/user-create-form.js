@@ -83,7 +83,7 @@ export default function UserCreateForm({ currentUser }) {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
       enqueueSnackbar(currentUser ? 'Update success!' : 'Create success!');
-      router.push(paths.dashboard.subscriberManagement.root);
+      router.push(paths.subscriberManagement.root);
       console.info('DATA', data);
     } catch (error) {
       console.error(error);
@@ -124,8 +124,12 @@ export default function UserCreateForm({ currentUser }) {
               <RHFTextField name="phoneNumber" label="Phone Number" />
               <RHFSelect name="role" label="Role">
                 <Divider sx={{ borderStyle: 'dashed' }} />
-                <MenuItem value="admin">Admin</MenuItem>
-                <MenuItem value="super_admin">Super Admin</MenuItem>
+                <MenuItem value="buyer">Buyer</MenuItem>
+                <MenuItem value="seller">Seller</MenuItem>
+                <MenuItem value="broker">Broker</MenuItem>
+                <MenuItem value="investor">Inverstor</MenuItem>
+                <MenuItem value="rentor">Rentor</MenuItem>
+                <MenuItem value="landlord">Landlord</MenuItem>
               </RHFSelect>
             </Box>
             <RHFTextField name="address" label="Address" sx={{ mt: 2 }} />
@@ -141,7 +145,7 @@ export default function UserCreateForm({ currentUser }) {
                 }}
                 loading={isSubmitting}
               >
-                {!currentUser ? 'Create User' : 'Save Changes'}
+                {!currentUser ? 'Create New User' : 'Save Changes'}
               </LoadingButton>
             </Stack>
           </Card>
