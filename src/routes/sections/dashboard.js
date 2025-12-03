@@ -68,7 +68,7 @@ const BlankPage = lazy(() => import('src/pages/dashboard/blank'));
 
 export const dashboardRoutes = [
   {
-    path: 'dashboard',
+    path: '/',
     element: (
       <AuthGuard>
         <DashboardLayout>
@@ -79,7 +79,7 @@ export const dashboardRoutes = [
       </AuthGuard>
     ),
     children: [
-      { element: <IndexPage />, index: true },
+      { path: '/dashboard', element: <IndexPage />, index: true },
       { path: 'ecommerce', element: <OverviewEcommercePage /> },
       { path: 'analytics', element: <OverviewAnalyticsPage /> },
       { path: 'banking', element: <OverviewBankingPage /> },
@@ -155,9 +155,29 @@ export const dashboardRoutes = [
           { path: ':id/edit', element: <TourEditPage /> },
         ],
       },
-      { path: 'file-manager', element: <FileManagerPage /> },
-      { path: 'subscriber-management', element: <UserListView /> },
-      { path: 'subscriber-management/new', element: <UserCreateView /> },
+      {
+        path: 'subscriber-management',
+        children: [
+          { element: <UserListView />, index: true },
+          { path: 'new', element: <UserCreateView /> },
+        ],
+      },
+
+      {
+        path: 'flagged-conversations',
+        children: [
+          { element: <UserListView />, index: true },
+          { path: 'new', element: <UserCreateView /> },
+        ],
+      },
+      {
+        path: 'listings-management',
+        children: [
+          { element: <UserListView />, index: true },
+          { path: 'new', element: <UserCreateView /> },
+        ],
+      },
+
       { path: 'mail', element: <MailPage /> },
       { path: 'chat', element: <ChatPage /> },
       { path: 'calendar', element: <CalendarPage /> },

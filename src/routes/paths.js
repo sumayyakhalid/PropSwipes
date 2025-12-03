@@ -99,8 +99,6 @@ export const paths = {
     calendar: `${ROOTS.DASHBOARD}/calendar`,
     fileManager: `${ROOTS.DASHBOARD}/file-manager`,
     permission: `${ROOTS.DASHBOARD}/permission`,
-    flaggedConversations: `${ROOTS.DASHBOARD}/flagged-conversations`,
-    listingsManagement: `${ROOTS.DASHBOARD}/listings-management`,
     settings: `${ROOTS.DASHBOARD}/settings`,
 
     general: {
@@ -111,15 +109,7 @@ export const paths = {
       booking: `${ROOTS.DASHBOARD}/booking`,
       file: `${ROOTS.DASHBOARD}/file`,
     },
-    subscriberManagement: {
-      root: `${ROOTS.DASHBOARD}/subscriber-management`,
-      new: `${ROOTS.DASHBOARD}/subscriber-management/new`,
-      list: `${ROOTS.DASHBOARD}/subscriber-management/list`,
-      cards: `${ROOTS.DASHBOARD}/subscriber-management/cards`,
-      profile: `${ROOTS.DASHBOARD}/subscriber-management/profile`,
-      account: `${ROOTS.DASHBOARD}/subscriber-management/account`,
-      edit: (id) => `${ROOTS.DASHBOARD}/subscriber-management/${id}/edit`,
-    },
+
     user: {
       root: `${ROOTS.DASHBOARD}/user`,
       new: `${ROOTS.DASHBOARD}/user/new`,
@@ -132,5 +122,20 @@ export const paths = {
         edit: `${ROOTS.DASHBOARD}/user/${MOCK_ID}/edit`,
       },
     },
+  },
+  subscriberManagement: {
+    root: '/subscriber-management',
+    new: `/subscriber-management/new`,
+    // edit: (id) => `${ROOTS.DASHBOARD}/subscriber-management/${id}/edit`,
+  },
+  flaggedConversations: {
+    root: '/flagged-conversations',
+    new: `/flagged-conversations/new`,
+    // edit: (id) => `${ROOTS.DASHBOARD}/flagged-conversations/${id}/edit`,
+  },
+  listingsManagement: {
+    root: '/listings-management',
+    new: `/listings-management/new`,
+    // edit: (id) => `${ROOTS.DASHBOARD}/listings-management/${id}/edit`,
   },
 };

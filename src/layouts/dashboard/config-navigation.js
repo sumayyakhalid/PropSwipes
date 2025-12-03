@@ -42,17 +42,17 @@ export function useNavData() {
           },
           {
             title: t('subscriber management'),
-            path: paths.dashboard.subscriberManagement.root,
+            path: paths.subscriberManagement.root,
             icon: ICONS.subscriberManagement,
           },
           {
             title: t('flagged conversations'),
-            path: paths.dashboard.general.analytics,
+            path: paths.flaggedConversations.root,
             icon: ICONS.flaggedConversations,
           },
           {
             title: t('Listings Management'),
-            path: paths.dashboard.general.banking,
+            path: paths.listingsManagement.root,
             icon: ICONS.listingsManagement,
           },
           {
