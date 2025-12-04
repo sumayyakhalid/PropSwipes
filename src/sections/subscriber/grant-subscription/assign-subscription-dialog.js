@@ -25,7 +25,7 @@ import { useRouter } from 'src/routes/hooks';
 import { paths } from 'src/routes/paths';
 
 export default function AssignSubscriptionDialog({ assignSubscriptionDialog, row }) {
-  console.log('row', row);
+  console.log('row', row?.email);
   const router = useRouter();
 
   // Get user id from row - handle both object and array cases
@@ -39,7 +39,7 @@ export default function AssignSubscriptionDialog({ assignSubscriptionDialog, row
   });
 
   const defaultValues = {
-    email: '',
+    email: row?.email || '',
     plan: '',
     periodType: '',
     duration: '',
@@ -108,7 +108,7 @@ export default function AssignSubscriptionDialog({ assignSubscriptionDialog, row
           <Divider sx={{ mt: 1 }} />
           <DialogContent sx={{ mt: 1 }}>
             <Stack sx={{ mt: 2 }}>
-              <RHFTextField name="email" label="Email Address" />
+              <RHFTextField name="email" label="Email Address" disabled />
 
               <Box sx={{ mt: 2, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr ', gap: 2 }}>
                 <RHFSelect name="plan" label="Select Plan">

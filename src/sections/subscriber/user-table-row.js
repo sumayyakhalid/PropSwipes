@@ -1,32 +1,30 @@
 import PropTypes from 'prop-types';
 // @mui
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 // hooks
+import { useNavigate } from 'react-router';
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
-import { ConfirmDialog } from 'src/components/custom-dialog';
-//
-
+import { paths } from 'src/routes/paths';
 // ----------------------------------------------------------------------
 
 export default function UserTableRow({
   row,
   selected,
   assignSubscriptionDialog,
-  onDeleteRow,
   onAssignSubscription,
 }) {
   const { name, role, address, phoneNumber, createdAt, plan, status } = row;
 
   const confirm = useBoolean();
+  const navigate = useNavigate();
 
   const popover = usePopover();
 
@@ -80,8 +78,8 @@ export default function UserTableRow({
       >
         <MenuItem
           onClick={() => {
-            confirm.onTrue();
             popover.onClose();
+            navigate(paths.subscriberManagement.detail(row.id));
           }}
         >
           View Profile
@@ -100,24 +98,11 @@ export default function UserTableRow({
           Assign Subscription
         </MenuItem>
       </CustomPopover>
-
-      <ConfirmDialog
-        open={confirm.value}
-        onClose={confirm.onFalse}
-        title="Delete"
-        content="Are you sure want to delete?"
-        action={
-          <Button variant="contained" color="error" onClick={onDeleteRow}>
-            Delete
-          </Button>
-        }
-      />
     </>
   );
 }
 
 UserTableRow.propTypes = {
-  onDeleteRow: PropTypes.func,
   row: PropTypes.object,
   selected: PropTypes.bool,
   assignSubscriptionDialog: PropTypes.object,

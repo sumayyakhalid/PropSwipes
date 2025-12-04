@@ -2,14 +2,12 @@ import PropTypes from 'prop-types';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
+import { Link } from '@mui/material';
 // utils
-import { fNumber, fPercent } from 'src/utils/format-number';
-// components
-import Iconify from 'src/components/iconify';
-import Chart from 'src/components/chart';
+import { fNumber } from 'src/utils/format-number';
+import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -22,6 +20,14 @@ export default function AppWidgetSummary({ title, percent, total, image, sx, ...
         <Typography sx={{ fontSize: '14px' }}>{title}</Typography>
 
         <Typography sx={{ fontSize: '28px', fontWeight: 'bold' }}>{fNumber(total)}</Typography>
+        {title === 'Total Report Received' && (
+          <Link
+            href={paths.dashboard}
+            sx={{ color: 'red', fontSize: '14px', textDecoration: 'underline' }}
+          >
+            View Report
+          </Link>
+        )}
       </Box>
 
       {image}
