@@ -134,9 +134,8 @@ export const paths = {
     new: `/flagged-conversations/new`,
     // edit: (id) => `${ROOTS.DASHBOARD}/flagged-conversations/${id}/edit`,
   },
-  listingsManagement: {
-    root: '/listings-management',
-    new: `/listings-management/new`,
-    // edit: (id) => `${ROOTS.DASHBOARD}/listings-management/${id}/edit`,
+  propertyManagement: {
+    root: '/property-management',
+    detail: (id) => `/property-management/${id}/property-detail`,
   },
 };

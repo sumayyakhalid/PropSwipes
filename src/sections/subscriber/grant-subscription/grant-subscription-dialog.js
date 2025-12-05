@@ -1,6 +1,7 @@
 import { LoadingButton } from '@mui/lab';
 import * as Yup from 'yup';
 import {
+  Alert,
   Avatar,
   Box,
   Button,
@@ -22,7 +23,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Stack } from '@mui/system';
 import { enqueueSnackbar } from 'notistack';
-import { RHFCheckbox, RHFSelect, RHFTextField } from 'src/components/hook-form';
+import { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { _userList } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 
@@ -31,14 +32,14 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
     plan: Yup.string().required('Plan is required'),
     periodType: Yup.string().required('Period Type is required'),
     duration: Yup.number().required('Duration is required'),
-    selectedFlags: Yup.array().of(Yup.boolean()),
+    selectedUsers: Yup.array().of(Yup.object()).min(1, 'At least one user is required'),
   });
 
   const defaultValues = {
     plan: '',
     periodType: '',
     duration: '',
-    selectedFlags: _userList.map(() => false),
+    selectedUsers: [],
   };
 
   const methods = useForm({
@@ -48,23 +49,53 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
 
   const {
     setValue,
+    watch,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = methods;
+
+  const selectedUsers = watch('selectedUsers') || [];
 
   console.log('error', methods.formState.errors);
 
+  const handleUserToggle = (user) => {
+    const currentSelected = selectedUsers || [];
+    const isSelected = currentSelected.some((selectedUser) => selectedUser.id === user.id);
+
+    if (isSelected) {
+      // Remove user from array
+      const updated = currentSelected.filter((selectedUser) => selectedUser.id !== user.id);
+      setValue('selectedUsers', updated, { shouldValidate: true });
+    } else {
+      // Add user to array
+      const updated = [...currentSelected, user];
+      setValue('selectedUsers', updated, { shouldValidate: true });
+    }
+  };
+
+  const isUserSelected = (user) =>
+    selectedUsers.some((selectedUser) => selectedUser.id === user.id);
+
+  // // Handle form validation errors
+  const onError = (validationErrors) => {
+    console.log('Form validation errors:', validationErrors);
+    if (validationErrors.selectedUsers) {
+      console.log('error 1');
+      enqueueSnackbar(validationErrors.selectedUsers.message || 'At least one user is required', {
+        variant: 'error',
+      });
+    }
+  };
+
   const onSubmit = async (data) => {
     console.log('Form Data', data);
-    console.log('selectedFlags', data.selectedFlags);
-    const selectedUsers = data.selectedFlags
-      .map((flag, index) => (flag ? _userList[index] : null))
-      .filter(Boolean);
-
-    data.selectedUsers = selectedUsers;
-    console.log('selectedUsers', data);
-    grantSubscriptionDialog.onFalse();
-    enqueueSnackbar('Subscription granted successfully', { variant: 'success' });
+    try {
+      grantSubscriptionDialog.onFalse();
+      enqueueSnackbar('Subscription granted successfully', { variant: 'success' });
+    } catch (error) {
+      console.log('sumayay', errors);
+      enqueueSnackbar('Failed to grant subscription', { variant: 'error' });
+    }
   };
   return (
     <FormProvider {...methods}>
@@ -78,7 +109,7 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
           },
         }}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
           <DialogTitle
             sx={{
               display: 'flex',
@@ -99,6 +130,12 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
             Grant a selected subscription plan to a user for a specific duration.
           </Typography>
 
+          {/* {errors.selectedUsers?.message && (
+            <Alert severity="error" sx={{ mb: 1 }}>
+              {errors.selectedUsers.message}
+            </Alert>
+          )} */}
+
           <Divider sx={{ mt: 1 }} />
           <DialogContent sx={{ mt: 1 }}>
             <Box sx={{ mt: 2, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr ', gap: 2 }}>
@@ -117,9 +154,9 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
               <RHFTextField name="duration" label="Duration" />
             </Box>
 
-            {/* slect multiple user for subscription  */}
+            {/* select multiple user for subscription  */}
             {_userList.map((user, index) => (
-              <>
+              <Box key={user.id}>
                 <Divider sx={{ mt: 2 }} />
                 <Stack sx={{ my: 2 }}>
                   <Box
@@ -127,7 +164,6 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
                       display: 'flex',
                       alignItems: 'space-between',
                       gap: 2,
-
                       justifyContent: 'space-between',
                     }}
                   >
@@ -139,15 +175,16 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
                       </Box>
                     </Box>
                     <Box>
-                      {' '}
-                      <RHFCheckbox
-                        name={`selectedFlags.${index}`}
+                      <Checkbox
+                        checked={isUserSelected(user)}
+                        onChange={() => handleUserToggle(user)}
                         sx={{
                           width: 24,
                           height: 24,
-
-                          // checked state fix for RHFCheckbox
-                          '& .MuiCheckbox-root.Mui-checked .MuiSvgIcon-root': {
+                          '& .MuiSvgIcon-root': {
+                            color: isUserSelected(user) ? '#046AF7' : undefined,
+                          },
+                          '&.Mui-checked .MuiSvgIcon-root': {
                             color: '#046AF7 !important',
                           },
                         }}
@@ -155,7 +192,7 @@ export default function GrantSubscriptionDialog({ grantSubscriptionDialog }) {
                     </Box>
                   </Box>
                 </Stack>
-              </>
+              </Box>
             ))}
             <Divider />
             {/* avatar  */}

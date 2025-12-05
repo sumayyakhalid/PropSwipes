@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import { Divider } from '@mui/material';
+import { paths } from 'src/routes/paths';
+import { useRouter } from 'src/routes/hooks';
 
 // ----------------------------------------------------------------------
 
@@ -37,7 +39,8 @@ function UserListingCard({ listing }) {
     three_bed,
     two_bed,
     square_ft,
-    type,
+    parking,
+    fees,
     images,
     listedDate,
   } = listing;
@@ -46,6 +49,7 @@ function UserListingCard({ listing }) {
   const thumbs = images?.[1];
   const thirdImage = images?.[3]; // Third image for +3 overlay
   const remainingCount = Math.max((images?.length || 0) - 3, 0);
+  const router = useRouter();
 
   return (
     <Card
@@ -80,6 +84,7 @@ function UserListingCard({ listing }) {
               sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             {/* Status Chip Overlay */}
+            {/* {console.log('dropwdown selected status', status)} */}
             <Chip
               label={status}
               size="medium"
@@ -216,7 +221,7 @@ function UserListingCard({ listing }) {
           </Typography>
         </Box>
         <Divider sx={{ my: 1.5 }} />
-        <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: 'wrap', gap: 1 }}>
+        <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: 'wrap', gap: 0.5 }}>
           <Chip
             icon={<img src="/assets/icons/dashboard/3-bed.svg" alt="bed" />}
             label={three_bed}
@@ -239,8 +244,6 @@ function UserListingCard({ listing }) {
               '&:hover': { bgcolor: '#046AF71A', color: '#016BFF' },
             }}
           />
-        </Stack>
-        <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: 'wrap', gap: 1 }}>
           <Chip
             icon={<img src="/assets/icons/dashboard/square-ft.svg" alt="bed" />}
             label={square_ft}
@@ -253,8 +256,19 @@ function UserListingCard({ listing }) {
             }}
           />
           <Chip
-            icon={<img src="/assets/icons/dashboard/residential.svg" alt="bed" />}
-            label={type}
+            icon={<img src="/assets/icons/dashboard/parking.svg" alt="bed" />}
+            label={parking}
+            size="medium"
+            sx={{
+              bgcolor: '#046AF71A',
+              fontSize: 12,
+              color: '#016BFF',
+              '&:hover': { bgcolor: '#046AF71A', color: '#016BFF' },
+            }}
+          />
+          <Chip
+            icon={<img src="/assets/icons/dashboard/fees.svg" alt="bed" />}
+            label={fees}
             size="medium"
             sx={{
               bgcolor: '#046AF71A',
@@ -279,6 +293,7 @@ function UserListingCard({ listing }) {
             py: 1.5,
             '&:hover': { bgcolor: '#0356D6' },
           }}
+          onClick={() => router.push(paths.propertyManagement.detail(listing.id))}
         >
           Review Property Details
         </Button>

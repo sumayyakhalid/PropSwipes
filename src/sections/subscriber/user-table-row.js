@@ -23,7 +23,6 @@ export default function UserTableRow({
 }) {
   const { name, role, address, phoneNumber, createdAt, plan, status } = row;
 
-  const confirm = useBoolean();
   const navigate = useNavigate();
 
   const popover = usePopover();

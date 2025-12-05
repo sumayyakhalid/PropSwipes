@@ -168,8 +168,8 @@ export const _userList = [...Array(20)].map((_, index) => ({
   listings: [
     {
       id: _mock.id(index * 3),
-      status: index % 2 === 0 ? 'Pending' : 'Approved',
-      statusColor: index % 2 === 0 ? 'warning' : 'success',
+      status: 'Approved',
+      statusColor: 'success',
       title: `Rockland County ${index + 1}`,
       tag: index % 3 === 0 ? 'For Sale' : 'For Rent',
       tagColor: index % 3 === 0 ? 'success' : 'error',
@@ -178,6 +178,8 @@ export const _userList = [...Array(20)].map((_, index) => ({
       two_bed: '2 Bed',
       square_ft: `${15000 + index * 100} Sq Ft`,
       type: 'Residential',
+      parking: '2 Parking',
+      fees: 'HOA fees (Monthly): $350',
       listedDate: 'September 30, 2025',
       images: [
         '/assets/icons/dashboard/property-1.png',
@@ -190,8 +192,8 @@ export const _userList = [...Array(20)].map((_, index) => ({
     },
     {
       id: _mock.id(index * 3 + 1),
-      status: index % 3 === 0 ? 'Pending' : 'Approved',
-      statusColor: index % 3 === 0 ? 'warning' : 'success',
+      status: 'Pending',
+      statusColor: 'warning',
       title: `Manhattan ${index + 1}`,
       tag: index % 2 === 0 ? 'For Sale' : 'For Rent',
       tagColor: index % 2 === 0 ? 'success' : 'error',
@@ -199,7 +201,8 @@ export const _userList = [...Array(20)].map((_, index) => ({
       three_bed: '4 Bed',
       two_bed: '3 Bed',
       square_ft: `${20000 + index * 200} Sq Ft`,
-      type: 'Commercial',
+      parking: '2 Parking',
+      fees: 'HOA fees (Monthly): $350',
       listedDate: 'October 15, 2025',
       images: [
         '/assets/icons/dashboard/property-1.png',
@@ -212,8 +215,8 @@ export const _userList = [...Array(20)].map((_, index) => ({
     },
     {
       id: _mock.id(index * 3 + 1),
-      status: index % 3 === 0 ? 'Pending' : 'Approved',
-      statusColor: index % 3 === 0 ? 'warning' : 'success',
+      status: 'Blocked',
+      statusColor: 'error',
       title: `Manhattan ${index + 1}`,
       tag: index % 2 === 0 ? 'For Sale' : 'For Rent',
       tagColor: index % 2 === 0 ? 'success' : 'error',
@@ -221,7 +224,8 @@ export const _userList = [...Array(20)].map((_, index) => ({
       three_bed: '4 Bed',
       two_bed: '3 Bed',
       square_ft: `${20000 + index * 200} Sq Ft`,
-      type: 'Commercial',
+      parking: '2 Parking',
+      fees: 'HOA fees (Monthly): $350',
       listedDate: 'October 15, 2025',
       images: [
         '/assets/icons/dashboard/property-1.png',

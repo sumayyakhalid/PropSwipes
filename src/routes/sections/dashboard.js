@@ -8,6 +8,8 @@ import DashboardLayout from 'src/layouts/dashboard';
 import { LoadingScreen } from 'src/components/loading-screen';
 import { UserCreateView, UserListView } from 'src/sections/subscriber/view';
 import UserDetailPage from 'src/pages/dashboard/subscriber/subscriber-detail';
+import PropertyListView from 'src/sections/property-management/property-list-view';
+import PropertyDetailPage from 'src/sections/property-management/property-detail-view';
 
 // ----------------------------------------------------------------------
 
@@ -173,10 +175,11 @@ export const dashboardRoutes = [
         ],
       },
       {
-        path: 'listings-management',
+        path: 'property-management',
         children: [
-          { element: <UserListView />, index: true },
-          { path: 'new', element: <UserCreateView /> },
+          { element: <PropertyListView />, index: true },
+          { path: ':id/property-detail', element: <PropertyDetailPage /> },
+          // { path: 'new', element: <UserCreateView /> },
         ],
       },
 

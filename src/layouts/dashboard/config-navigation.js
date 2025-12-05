@@ -20,7 +20,7 @@ const ICONS = {
   dashboard: icon('dashboard'),
   subscriberManagement: icon('ic_subscriber_management'),
   flaggedConversations: icon('ic_flagged_conversations'),
-  listingsManagement: icon('ic_listings_management'),
+  propertyManagement: icon('ic_property_management'),
   settings: icon('gear'),
 };
 
@@ -51,9 +51,9 @@ export function useNavData() {
             icon: ICONS.flaggedConversations,
           },
           {
-            title: t('Listings Management'),
-            path: paths.listingsManagement.root,
-            icon: ICONS.listingsManagement,
+            title: t('Property Management'),
+            path: paths.propertyManagement.root,
+            icon: ICONS.propertyManagement,
           },
           {
             title: t('Settings'),
