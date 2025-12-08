@@ -44,7 +44,7 @@ const defaultFilters = {
 
 export default function PropertyListView() {
   const settings = useSettingsContext();
-  const table = useTable();
+  const table = useTable({ defaultRowsPerPage: 6 });
 
   const [filters, setFilters] = useState(defaultFilters);
 
@@ -74,10 +74,6 @@ export default function PropertyListView() {
     [table]
   );
 
-  const handleResetFilters = useCallback(() => {
-    setFilters(defaultFilters);
-  }, []);
-
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
@@ -97,10 +93,10 @@ export default function PropertyListView() {
         onFilters={handleFilters}
         statusOptions={STATUS_OPTIONS}
       />
-      <Grid container spacing={2} sx={{ px: 2.5, pb: 2.5 }}>
+      <Grid container spacing={2} sx={{ px: 1, pb: 2.5 }}>
         {!notFound ? (
           dataInPage.map((listing, index) => (
-            <Grid key={`${listing.id}-${index}`} xs={12} md={3.8} sx={{ m: 0.5 }}>
+            <Grid key={`${listing.id}-${index}`} xs={12} md={3.8} sx={{ m: 0.5, mx: 'auto' }}>
               <UserPropertyListing listings={[listing]} />
             </Grid>
           ))
@@ -118,6 +114,7 @@ export default function PropertyListView() {
         rowsPerPage={table.rowsPerPage}
         onPageChange={table.onChangePage}
         onRowsPerPageChange={table.onChangeRowsPerPage}
+        rowsPerPageOptions={[6, 12, 24]}
       />
     </Container>
   );

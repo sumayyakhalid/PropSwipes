@@ -36,8 +36,8 @@ function UserListingCard({ listing }) {
     statusColor,
     title,
     price,
-    three_bed,
-    two_bed,
+    bed,
+    bath,
     square_ft,
     parking,
     fees,
@@ -224,7 +224,7 @@ function UserListingCard({ listing }) {
         <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: 'wrap', gap: 0.5 }}>
           <Chip
             icon={<img src="/assets/icons/dashboard/3-bed.svg" alt="bed" />}
-            label={three_bed}
+            label={bed}
             size="medium"
             sx={{
               bgcolor: '#046AF71A',
@@ -235,7 +235,7 @@ function UserListingCard({ listing }) {
           />
           <Chip
             icon={<img src="/assets/icons/dashboard/2-bed.svg" alt="bed" />}
-            label={two_bed}
+            label={bath}
             size="medium"
             sx={{
               bgcolor: '#046AF71A',
