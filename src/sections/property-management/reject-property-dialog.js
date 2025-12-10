@@ -1,15 +1,12 @@
 import { LoadingButton } from '@mui/lab';
 import * as Yup from 'yup';
 import {
-  Box,
   Button,
   CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
-  MenuItem,
   Typography,
 } from '@mui/material';
 
@@ -17,12 +14,12 @@ import PropTypes from 'prop-types';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { borderColor, Stack } from '@mui/system';
-import { RHFSelect, RHFTextField } from 'src/components/hook-form';
+import { Stack } from '@mui/system';
+import { RHFTextField } from 'src/components/hook-form';
 
-export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) {
+export default function RejectPropertyDialog({ rejectPropertyDialog }) {
   const FormDataSchema = Yup.object().shape({
-    reason: Yup.string().required('Email is required'),
+    reason: Yup.string().required('Valid Reason For Rejection is required'),
   });
 
   const defaultValues = {
@@ -35,7 +32,6 @@ export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) 
   });
 
   const {
-    setValue,
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
@@ -45,12 +41,12 @@ export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) 
   const onSubmit = async (data) => {
     console.log('Form Data', data);
 
-    rejectSubscriptionDialog.onFalse();
+    rejectPropertyDialog.onFalse();
   };
   return (
     <FormProvider {...methods}>
       <Dialog
-        open={rejectSubscriptionDialog.value}
+        open={rejectPropertyDialog.value}
         // onClose={lessonLearnedDialog.onFalse}
         PaperProps={{
           sx: {
@@ -72,7 +68,6 @@ export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) 
             Provide a clear, actionable reason for the seller.
           </Typography>
 
-          <Divider sx={{ mt: 1 }} />
           <DialogContent sx={{ mt: 1 }}>
             <Stack sx={{ mt: 2 }}>
               <RHFTextField
@@ -95,7 +90,7 @@ export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) 
           >
             <Button
               variant="outlined"
-              onClick={rejectSubscriptionDialog.onFalse}
+              onClick={rejectPropertyDialog.onFalse}
               // disabled={loading}
               sx={{ borderColor: 'red', color: 'red', py: 1, width: '50%' }}
             >
@@ -114,7 +109,7 @@ export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) 
                 '&:hover': { backgroundColor: '#046AF7', color: 'white' },
               }}
             >
-              Grant Access
+              Confirm Rejection
             </LoadingButton>
           </DialogActions>
         </form>
@@ -123,6 +118,6 @@ export default function RejecttSubscriptionDialog({ rejectSubscriptionDialog }) 
   );
 }
 
-RejecttSubscriptionDialog.propTypes = {
-  rejectSubscriptionDialog: PropTypes.object,
+RejectPropertyDialog.propTypes = {
+  rejectPropertyDialog: PropTypes.object,
 };

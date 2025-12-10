@@ -10,6 +10,7 @@ import { UserCreateView, UserListView } from 'src/sections/subscriber/view';
 import UserDetailPage from 'src/pages/dashboard/subscriber/subscriber-detail';
 import PropertyListView from 'src/sections/property-management/property-list-view';
 import PropertyDetailPage from 'src/pages/dashboard/property-management/property-detail';
+import FlaggedConversationsListView from 'src/sections/flagged-conversation/flagged-conversation-list-view';
 
 // ----------------------------------------------------------------------
 
@@ -169,10 +170,7 @@ export const dashboardRoutes = [
 
       {
         path: 'flagged-conversations',
-        children: [
-          { element: <UserListView />, index: true },
-          { path: 'new', element: <UserCreateView /> },
-        ],
+        children: [{ element: <FlaggedConversationsListView />, index: true }],
       },
       {
         path: 'property-management',

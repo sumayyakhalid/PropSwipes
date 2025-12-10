@@ -1,1 +1,1 @@
-export { default as PropertyListView } from '../product/common/property-list-view';
+export { default as PropertyListView } from './property-list-view';

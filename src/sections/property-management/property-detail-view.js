@@ -15,11 +15,12 @@ import { paths } from 'src/routes/paths';
 // components
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
-import Label from 'src/components/label';
 import Lightbox, { useLightBox } from 'src/components/lightbox';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import { useSettingsContext } from 'src/components/settings';
 import { _userList } from 'src/_mock';
+import { useBoolean } from 'src/hooks/use-boolean';
+import RejectPropertyDialog from './reject-property-dialog';
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +46,7 @@ const AMENITIES = [
 
 export default function PropertyDetailPage({ currentProperty }) {
   const settings = useSettingsContext();
+  const rejectPropertyDialog = useBoolean(false);
 
   const currentUserDetails = _userList.find((user) =>
     user?.listings?.some((listing) => listing.id === currentProperty)
@@ -527,13 +529,9 @@ export default function PropertyDetailPage({ currentProperty }) {
               <Divider sx={{ my: 1 }} />
               <Box
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: {
-                    xs: 'repeat(2, 1fr)',
-                    sm: 'repeat(3, 1fr)',
-                    md: 'repeat(4, 1fr)',
-                  },
-                  gap: 2,
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 1,
                 }}
               >
                 {amenities.map((amenity) => (
@@ -542,9 +540,9 @@ export default function PropertyDetailPage({ currentProperty }) {
                     direction="row"
                     spacing={1}
                     alignItems="center"
-                    sx={{ diplay: 'flex', flexWrap: 'wrap' }}
+                    sx={{ display: 'flex', flexWrap: 'wrap' }}
                   >
-                    <img src={amenity.icon} alt="swimming_pool" width={20} height={20} />
+                    <img src={amenity.icon} alt="swimming_pool" width={39} height={44} />
                     <Typography variant="body2">{amenity.name}</Typography>
                   </Stack>
                 ))}
@@ -678,6 +676,7 @@ export default function PropertyDetailPage({ currentProperty }) {
                     variant="contained"
                     color="error"
                     sx={{ height: '40px', fontSize: '13px', width: '90%' }}
+                    onClick={rejectPropertyDialog.onTrue}
                   >
                     Reject Property
                   </Button>
@@ -738,6 +737,10 @@ export default function PropertyDetailPage({ currentProperty }) {
           </Grid>
         </Grid>
       </Container>
+
+      {rejectPropertyDialog.value && (
+        <RejectPropertyDialog rejectPropertyDialog={rejectPropertyDialog} />
+      )}
 
       <Lightbox
         index={lightbox.selected}

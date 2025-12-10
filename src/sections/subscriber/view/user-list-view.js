@@ -39,7 +39,6 @@ import UserTableRow from '../user-table-row';
 import UserTableToolbar from '../user-table-toolbar';
 import UserTableFiltersResult from '../user-table-filters-result';
 import GrantSubscriptionDialog from '../grant-subscription/grant-subscription-dialog';
-import RejecttSubscriptionDialog from '../grant-subscription/reject-listing-dialog';
 import AssignSubscriptionDialog from '../grant-subscription/assign-subscription-dialog';
 
 // ----------------------------------------------------------------------
@@ -74,7 +73,6 @@ const defaultFilters = {
 
 export default function UserListView() {
   const grantSubscriptionDialog = useBoolean(false);
-  const rejectSubscriptionDialog = useBoolean(false);
   const assignSubscriptionDialog = useBoolean(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const table = useTable();
@@ -307,14 +305,9 @@ export default function UserListView() {
         }
       />
       {grantSubscriptionDialog.value && (
-        <GrantSubscriptionDialog
-          grantSubscriptionDialog={grantSubscriptionDialog}
-          rejectSubscriptionDialog={rejectSubscriptionDialog}
-        />
+        <GrantSubscriptionDialog grantSubscriptionDialog={grantSubscriptionDialog} />
       )}
-      {rejectSubscriptionDialog.value && (
-        <RejecttSubscriptionDialog rejectSubscriptionDialog={rejectSubscriptionDialog} />
-      )}
+
       {assignSubscriptionDialog.value && (
         <AssignSubscriptionDialog
           assignSubscriptionDialog={assignSubscriptionDialog}
