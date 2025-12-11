@@ -8,7 +8,7 @@ export default function UserListPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Subscriber List</title>
+        <title> Dashboard: Subscriber Management</title>
       </Helmet>
 
       <UserListView />

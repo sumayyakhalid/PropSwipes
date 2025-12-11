@@ -57,7 +57,7 @@ export function useNavData() {
           },
           {
             title: t('Settings'),
-            path: paths.dashboard.general.banking,
+            path: paths.dashboard.user.account,
             icon: ICONS.settings,
           },
         ],

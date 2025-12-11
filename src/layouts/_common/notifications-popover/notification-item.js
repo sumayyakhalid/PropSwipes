@@ -2,12 +2,9 @@ import PropTypes from 'prop-types';
 // @mui
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
-// utils
-import { fToNow } from 'src/utils/format-time';
 
 // ----------------------------------------------------------------------
 

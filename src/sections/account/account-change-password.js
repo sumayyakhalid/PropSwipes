@@ -22,20 +22,20 @@ export default function AccountChangePassword() {
   const password = useBoolean();
 
   const ChangePassWordSchema = Yup.object().shape({
-    oldPassword: Yup.string().required('Old Password is required'),
+    currentPassword: Yup.string().required('Current Password is required'),
     newPassword: Yup.string()
       .required('New Password is required')
       .min(6, 'Password must be at least 6 characters')
       .test(
         'no-match',
-        'New password must be different than old password',
-        (value, { parent }) => value !== parent.oldPassword
+        'New password must be different than current password',
+        (value, { parent }) => value !== parent.currentPassword
       ),
     confirmNewPassword: Yup.string().oneOf([Yup.ref('newPassword')], 'Passwords must match'),
   });
 
   const defaultValues = {
-    oldPassword: '',
+    currentPassword: '',
     newPassword: '',
     confirmNewPassword: '',
   };
@@ -64,11 +64,11 @@ export default function AccountChangePassword() {
 
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
-      <Stack component={Card} spacing={3} sx={{ p: 3 }}>
+      <Stack component={Card} spacing={3} sx={{ p: 3, width: '80%' }}>
         <RHFTextField
-          name="oldPassword"
+          name="currentPassword"
           type={password.value ? 'text' : 'password'}
-          label="Old Password"
+          label="Current Password"
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -116,8 +116,14 @@ export default function AccountChangePassword() {
           }}
         />
 
-        <LoadingButton type="submit" variant="contained" loading={isSubmitting} sx={{ ml: 'auto' }}>
-          Save Changes
+        <LoadingButton
+          type="submit"
+          variant="contained"
+          fullWidth
+          loading={isSubmitting}
+          sx={{ ml: 'auto', backgroundColor: '#006BFF', '&:hover': { backgroundColor: '#006BFF' } }}
+        >
+          Save
         </LoadingButton>
       </Stack>
     </FormProvider>

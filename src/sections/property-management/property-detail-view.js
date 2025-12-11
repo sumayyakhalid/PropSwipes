@@ -538,72 +538,70 @@ export default function PropertyDetailPage({ currentProperty }) {
                   <Stack
                     key={amenity}
                     direction="row"
-                    spacing={1}
+                    spacing={1.3}
                     alignItems="center"
-                    sx={{ display: 'flex', flexWrap: 'wrap' }}
+                    sx={{ display: 'flex' }}
                   >
                     <img src={amenity.icon} alt="swimming_pool" width={39} height={44} />
-                    <Typography variant="body2">{amenity.name}</Typography>
+                    <Typography variant="body2" sx={{ color: '#919EAB' }}>
+                      {amenity.name}
+                    </Typography>
                   </Stack>
                 ))}
               </Box>
             </Card>
 
             {/* Appliances */}
-            <Card sx={{ p: 1, my: 2 }}>
+            <Card sx={{ p: 1, mt: 2 }}>
               <Typography variant="subtitle2">Appliances</Typography>
               <Divider sx={{ my: 1 }} />
               <Box
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: {
-                    xs: 'repeat(2, 1fr)',
-                    sm: 'repeat(3, 1fr)',
-                    md: 'repeat(4, 1fr)',
-                  },
-                  gap: 2,
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 1,
                 }}
               >
-                {appliances.map((amenity) => (
+                {appliances.map((appliance) => (
                   <Stack
-                    key={amenity}
+                    key={appliance}
                     direction="row"
-                    spacing={1}
+                    spacing={1.3}
                     alignItems="center"
-                    sx={{ diplay: 'flex', flexWrap: 'wrap' }}
+                    sx={{ display: 'flex' }}
                   >
-                    <img src={amenity.icon} alt="swimming_pool" width={20} height={20} />
-                    <Typography variant="body2">{amenity.name}</Typography>
+                    <img src={appliance.icon} alt="appliances" width={39} height={44} />
+                    <Typography variant="body2" sx={{ color: '#919EAB' }}>
+                      {appliance.name}
+                    </Typography>
                   </Stack>
                 ))}
               </Box>
             </Card>
 
             {/* Interior Features */}
-            <Card sx={{ p: 1 }}>
+            <Card sx={{ p: 1, mt: 2 }}>
               <Typography variant="subtitle2">Interior Features</Typography>
               <Divider sx={{ my: 1 }} />
               <Box
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: {
-                    xs: 'repeat(2, 1fr)',
-                    sm: 'repeat(3, 1fr)',
-                    md: 'repeat(4, 1fr)',
-                  },
-                  gap: 2,
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 1,
                 }}
               >
-                {interior_features.map((amenity) => (
+                {interior_features.map((feature) => (
                   <Stack
-                    key={amenity}
+                    key={feature}
                     direction="row"
-                    spacing={1}
+                    spacing={1.3}
                     alignItems="center"
-                    sx={{ diplay: 'flex', flexWrap: 'wrap' }}
+                    sx={{ display: 'flex' }}
                   >
-                    <img src={amenity.icon} alt="swimming_pool" width={20} height={20} />
-                    <Typography variant="body2">{amenity.name}</Typography>
+                    <img src={feature.icon} alt="appliances" width={39} height={44} />
+                    <Typography variant="body2" sx={{ color: '#919EAB' }}>
+                      {feature.name}
+                    </Typography>
                   </Stack>
                 ))}
               </Box>

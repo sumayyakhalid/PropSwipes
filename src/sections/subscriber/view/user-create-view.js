@@ -19,7 +19,7 @@ export default function UserCreateView() {
         heading="Create New Subscriber"
         links={[
           {
-            name: 'Subscriber List',
+            name: 'Subscriber Management',
             href: paths.subscriberManagement.root,
           },
 

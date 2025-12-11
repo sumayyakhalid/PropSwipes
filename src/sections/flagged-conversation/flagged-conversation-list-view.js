@@ -60,12 +60,15 @@ export default function FlaggedConversationsListView() {
 
     return (
       <Stack spacing={2}>
-        <Typography
-          variant="caption"
-          sx={{ color: 'text.secondary', textAlign: 'left', display: 'block' }}
-        >
-          {party.chatDate || selectedConversation.chatDate}
-        </Typography>
+        <Divider>
+          <Typography
+            variant="caption"
+            sx={{ color: 'text.secondary', textAlign: 'left', display: 'block' }}
+          >
+            {party.chatDate || selectedConversation.chatDate}
+          </Typography>
+        </Divider>
+
         {partyMessages.map((message) => {
           // Determine side: if sender is the reported user (Amanda), show on right, else left
           const isReportedUser = message.senderId === selectedConversation?.reportedUser?.id;
@@ -96,35 +99,31 @@ export default function FlaggedConversationsListView() {
                   <Iconify icon={message.senderIcon} width={18} />
                 </Avatar>
                 <Box sx={{ maxWidth: '100%' }}>
-                  <Box
-                    sx={{
-                      p: 1.5,
-                      borderRadius: 3,
-                      bgcolor: messageSide === 'left' ? '#fde8d0' : '#d0f5d9',
-                      maxWidth: '100%',
-                    }}
-                  >
-                    <Typography
-                      variant="caption"
-                      sx={{ display: 'block', mb: 0.5, fontWeight: 600 }}
-                    >
-                      {message.senderName}
-                    </Typography>
-                    <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>
-                      {message.body}
-                    </Typography>
-                  </Box>
                   <Typography
-                    variant="caption"
+                    variant="body2"
                     sx={{
-                      color: 'text.secondary',
+                      wordBreak: 'break-word',
+                      color: '#919EAB',
+                      textAlign: messageSide === 'right' ? 'right' : 'left',
                       display: 'block',
-                      mt: 0.75,
-                      textAlign: messageSide === 'left' ? 'left' : 'right',
                     }}
                   >
                     {message.createdAt}
                   </Typography>
+
+                  <Box
+                    sx={{
+                      p: 1.5,
+                      borderRadius: 1,
+                      bgcolor: messageSide === 'left' ? '#F5E1E3' : '#d0f5d9',
+                      maxWidth: '100%',
+                      mt: '0.5rem',
+                    }}
+                  >
+                    <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>
+                      {message.body}
+                    </Typography>
+                  </Box>
                 </Box>
               </Stack>
             </Box>
@@ -149,7 +148,6 @@ export default function FlaggedConversationsListView() {
           p: 2,
           borderBottom: '1px solid',
           borderColor: 'divider',
-          borderRadius: '1rem',
         }}
       >
         <Stack
@@ -176,7 +174,7 @@ export default function FlaggedConversationsListView() {
       </Box>
 
       {/* Conversations List */}
-      <Scrollbar sx={{ flex: 1 }}>
+      <Scrollbar sx={{ flex: 1, borderBottomLeftRadius: '1rem' }}>
         <Stack spacing={0}>
           {filteredConversations.map((conversation) => (
             <Box
@@ -226,12 +224,17 @@ export default function FlaggedConversationsListView() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 2,
-        bgcolor: 'background.paper',
+        borderRadiuds: 2,
+        bgColor: 'yellow',
+        // bgcolor: 'background.paper',
         p: 5,
       }}
     >
-      <img src="/assets/icons/dashboard/suspended_acounts.svg" alt="Suspended Acounts" />
+      <img
+        src="/assets/icons/dashboard/suspended_acounts.svg"
+        alt="Suspended Acounts"
+        style={{ width: '150px', height: '150px' }}
+      />
       <Typography variant="h4" sx={{ mt: 1, color: 'text.primary' }}>
         Select a Conversation to Begin Review
       </Typography>
@@ -254,6 +257,8 @@ export default function FlaggedConversationsListView() {
         p: 0,
         m: 0,
         backgroundColor: 'white',
+        borderTopRightRadius: '1rem',
+        overflow: 'hidden',
         position: 'relative',
       }}
     >
@@ -265,7 +270,7 @@ export default function FlaggedConversationsListView() {
           alignItems: 'center',
           backgroundColor: '#F5E1E3',
           p: '1rem',
-          borderRadius: '0 12px 0 0',
+          // borderRadius: '0 12px 0 0',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -303,14 +308,25 @@ export default function FlaggedConversationsListView() {
           {selectedConversation.reportedParties.length > 0 && (
             <Card
               sx={{
-                p: 2,
-                mb: 3,
-                bgcolor: '#F5E1E3',
-                border: '1px solid',
-                borderColor: '#F5E1E3',
+                // p: 2,
+                mb: 0,
+                bgcolor: expandedParties[selectedConversation.reportedParties[0].id]
+                  ? '#FCE4E4'
+                  : 'transparent',
+                borderRadius: '0rem',
               }}
             >
-              <Stack direction="row" spacing={2} alignItems="center">
+              <Stack
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                sx={{
+                  p: 2,
+                  bgcolor: expandedParties[selectedConversation.reportedParties[0].id]
+                    ? '#F5E1E3'
+                    : 'transparent',
+                }}
+              >
                 <Avatar
                   src={selectedConversation.reportedParties[0].avatarUrl}
                   alt={selectedConversation.reportedParties[0].name}
@@ -321,37 +337,39 @@ export default function FlaggedConversationsListView() {
                     <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                       {selectedConversation.reportedParties[0].name}
                     </Typography>
-                    <Iconify
-                      icon="solar:eye-bold"
-                      width={18}
-                      sx={{
-                        color: selectedConversation.reportedParties[0].isHidden
-                          ? 'error.main'
-                          : 'text.secondary',
-                      }}
-                    />
                   </Stack>
-                  <Typography variant="caption" sx={{ color: 'error.main', fontWeight: 600 }}>
+                  <Typography variant="caption" sx={{ color: '#AD0000', fontWeight: 600 }}>
                     Reported Date: {selectedConversation.reportedParties[0].reportedDate}
                   </Typography>
                 </Box>
-                <IconButton
-                  size="small"
-                  onClick={() => handleToggleParty(selectedConversation.reportedParties[0].id)}
-                >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Iconify
-                    icon={
-                      expandedParties[selectedConversation.reportedParties[0].id]
-                        ? 'eva:arrow-ios-upward-fill'
-                        : 'eva:arrow-ios-downward-fill'
-                    }
-                    width={20}
-                    sx={{ color: 'text.secondary' }}
+                    icon="solar:eye-bold"
+                    width={18}
+                    sx={{
+                      color: expandedParties[selectedConversation.reportedParties[0].id]
+                        ? 'error.main'
+                        : 'text.secondary',
+                    }}
                   />
-                </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={() => handleToggleParty(selectedConversation.reportedParties[0].id)}
+                  >
+                    <Iconify
+                      icon={
+                        expandedParties[selectedConversation.reportedParties[0].id]
+                          ? 'eva:arrow-ios-upward-fill'
+                          : 'eva:arrow-ios-downward-fill'
+                      }
+                      width={20}
+                      sx={{ color: 'text.secondary' }}
+                    />
+                  </IconButton>
+                </Box>
               </Stack>
               <Collapse in={expandedParties[selectedConversation.reportedParties[0].id]}>
-                <Box sx={{ mt: 2, pt: 2, borderTop: '1px solid', borderColor: 'divider' }}>
+                <Box sx={{ py: 1, backgroundColor: 'white', p: 2 }}>
                   {renderPartyMessages(selectedConversation.reportedParties[0])}
                 </Box>
               </Collapse>
@@ -405,7 +423,7 @@ export default function FlaggedConversationsListView() {
                             sx={{
                               p: 1.5,
                               borderRadius: 2,
-                              bgcolor: message.side === 'left' ? '#F5E1E3' : 'success.lighter',
+                              bgcolor: message.side === 'left' ? '#dddddd' : 'success.lighter',
                               maxWidth: '100%',
                             }}
                           >
@@ -416,7 +434,7 @@ export default function FlaggedConversationsListView() {
                           <Typography
                             variant="caption"
                             sx={{
-                              color: 'text.secondary',
+                              color: '#919EAB',
                               display: 'block',
                               mt: 0.5,
                               textAlign: message.side === 'left' ? 'left' : 'right',
@@ -447,50 +465,58 @@ export default function FlaggedConversationsListView() {
 
           {/* Additional Reported Parties (Bottom) */}
           {selectedConversation.reportedParties.length > 1 && (
-            <Stack spacing={2}>
+            <Stack>
               {selectedConversation.reportedParties.slice(1).map((party) => (
                 <Card
                   key={party.id}
                   sx={{
-                    p: 2,
-                    bgcolor: '#F5E1E3',
-                    border: '1px solid',
-                    borderColor: '#F5E1E3',
+                    // p: 2,
+                    mb: 0,
+                    // bgcolor: expandedParties[party.id] ? '#F5E1E3' : 'transparent',
+                    borderRadius: '0rem',
                   }}
                 >
-                  <Stack direction="row" spacing={2} alignItems="center">
+                  <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 2 }}>
                     <Avatar src={party.avatarUrl} alt={party.name} sx={{ width: 48, height: 48 }} />
                     <Box sx={{ flex: 1 }}>
                       <Stack direction="row" spacing={1} alignItems="center">
                         <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                           {party.name}
                         </Typography>
-                        <Iconify
-                          icon="solar:eye-bold"
-                          width={18}
-                          sx={{
-                            color: party.isHidden ? 'error.main' : 'text.secondary',
-                          }}
-                        />
                       </Stack>
-                      <Typography variant="caption" sx={{ color: 'error.main', fontWeight: 600 }}>
+                      <Typography variant="caption" sx={{ color: '#AD0000', fontWeight: 600 }}>
                         Reported Date: {party.reportedDate}
                       </Typography>
                     </Box>
-                    <IconButton size="small" onClick={() => handleToggleParty(party.id)}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Iconify
-                        icon={
-                          expandedParties[party.id]
-                            ? 'eva:arrow-ios-upward-fill'
-                            : 'eva:arrow-ios-downward-fill'
-                        }
-                        width={20}
-                        sx={{ color: 'text.secondary' }}
+                        icon="solar:eye-bold"
+                        width={18}
+                        sx={{
+                          color: expandedParties[party.id] ? 'error.main' : 'text.secondary',
+                        }}
                       />
-                    </IconButton>
+                      <IconButton size="small" onClick={() => handleToggleParty(party.id)}>
+                        <Iconify
+                          icon={
+                            expandedParties[party.id]
+                              ? 'eva:arrow-ios-upward-fill'
+                              : 'eva:arrow-ios-downward-fill'
+                          }
+                          width={20}
+                          sx={{ color: 'text.secondary' }}
+                        />
+                      </IconButton>
+                    </Box>
                   </Stack>
                   <Collapse in={expandedParties[party.id]}>
-                    <Box sx={{ mt: 2, pt: 2, borderTop: '1px solid', borderColor: 'divider' }}>
+                    <Box
+                      sx={{
+                        backgroundColor: 'white',
+                        p: 2,
+                        py: 1,
+                      }}
+                    >
                       {renderPartyMessages(party)}
                     </Box>
                   </Collapse>
@@ -530,13 +556,21 @@ export default function FlaggedConversationsListView() {
         <Grid
           xs={12}
           md={4}
-          sx={{ backgroundColor: 'white', borderRight: '1px solid #E0E0E0', p: 0, my: 1 }}
+          sx={{
+            borderRadius: '0.2rem',
+            borderRight: '1px solid #E0E0E0',
+            p: 0,
+          }}
         >
           {renderSidebar}
         </Grid>
 
         {/* Main Content Area */}
-        <Grid xs={12} md={8} sx={{ backgroundColor: 'white', borderRadius: 1, p: 0, m: 0 }}>
+        <Grid
+          xs={12}
+          md={8}
+          sx={{ borderBottomRightRadius: '2rem', overflow: 'hidden', p: 0, m: 0 }}
+        >
           {selectedConversation ? renderConversationDetail : renderEmptyState}
         </Grid>
       </Grid>

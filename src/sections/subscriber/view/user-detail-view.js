@@ -147,7 +147,7 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
               <Typography sx={{ fontSize: 11, color: 'red' }}>(Expires: 12 jan, 2026)</Typography>
 
               <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB' }}>
-                <span style={{ fontWeight: 'bold' }}>Registered Role:</span>
+                <span style={{ fontWeight: 'bold' }}>Registered Role: </span>
                 {userDetail?.role}
               </Typography>
             </Box>
@@ -157,11 +157,8 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
         <Grid xs={12} md={4} sx={{ my: 2 }}>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-              <img src="/assets/icons/dashboard/profile.svg" alt="user" width={12} height={12} />
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: 'bold', fontSize: 14, color: '#919EAB', width: '5rem' }}
-              >
+              <img src="/assets/icons/dashboard/profile.svg" alt="user" width={14} height={14} />
+              <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB', width: '5rem' }}>
                 Name
               </Typography>
             </Box>
@@ -173,11 +170,8 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
           </Stack>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <img src="/assets/icons/dashboard/email.svg" alt="user" width={12} height={12} />
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: 'bold', fontSize: 14, color: '#919EAB', width: '5rem' }}
-              >
+              <img src="/assets/icons/dashboard/email.svg" alt="user" width={14} height={14} />
+              <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB', width: '5rem' }}>
                 Email
               </Typography>
             </Box>
@@ -189,12 +183,9 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
           </Stack>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <img src="/assets/icons/dashboard/location.svg" alt="user" width={12} height={12} />
+              <img src="/assets/icons/dashboard/location.svg" alt="user" width={14} height={14} />
 
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: 'bold', fontSize: 14, color: '#919EAB', width: '5rem' }}
-              >
+              <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB', width: '5rem' }}>
                 Zip Code
               </Typography>
             </Box>
@@ -209,11 +200,8 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
         <Grid xs={12} md={4} sx={{ my: 2 }}>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <img src="/assets/icons/dashboard/call.svg" alt="user" width={12} height={12} />
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: 'bold', fontSize: 14, color: '#919EAB', width: '7rem' }}
-              >
+              <img src="/assets/icons/dashboard/call.svg" alt="user" width={14} height={14} />
+              <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB', width: '7rem' }}>
                 Phone Number
               </Typography>
             </Box>
@@ -225,12 +213,9 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
           </Stack>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <img src="/assets/icons/dashboard/location.svg" alt="user" width={12} height={12} />
+              <img src="/assets/icons/dashboard/location.svg" alt="user" width={14} height={14} />
 
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: 'bold', fontSize: 14, color: '#919EAB', width: '7rem' }}
-              >
+              <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB', width: '7rem' }}>
                 City
               </Typography>
             </Box>
@@ -242,12 +227,9 @@ export default function UserDetailPage({ currentUser, assignSubscriptionDialog }
           </Stack>
           <Stack sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2, alignItems: 'start' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <img src="/assets/icons/dashboard/location.svg" alt="user" width={12} height={12} />
+              <img src="/assets/icons/dashboard/location.svg" alt="user" width={14} height={14} />
 
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: 'bold', fontSize: 14, color: '#919EAB', width: '7.8rem' }}
-              >
+              <Typography variant="body1" sx={{ fontSize: 14, color: '#919EAB', width: '7.8rem' }}>
                 Address
               </Typography>
             </Box>

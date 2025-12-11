@@ -289,7 +289,7 @@ function UserListingCard({ listing }) {
             color: '#FFFFFF',
             fontWeight: 600,
             textTransform: 'none',
-            borderRadius: 2,
+            borderRadius: 1,
             py: 1.5,
             '&:hover': { bgcolor: '#0356D6' },
           }}

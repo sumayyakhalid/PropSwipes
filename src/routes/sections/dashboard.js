@@ -11,6 +11,7 @@ import UserDetailPage from 'src/pages/dashboard/subscriber/subscriber-detail';
 import PropertyListView from 'src/sections/property-management/property-list-view';
 import PropertyDetailPage from 'src/pages/dashboard/property-management/property-detail';
 import FlaggedConversationsListView from 'src/sections/flagged-conversation/flagged-conversation-list-view';
+import { AccountView } from 'src/sections/account/view';
 
 // ----------------------------------------------------------------------
 
@@ -179,6 +180,10 @@ export const dashboardRoutes = [
           { path: ':id/property-detail', element: <PropertyDetailPage /> },
           // { path: 'new', element: <UserCreateView /> },
         ],
+      },
+      {
+        path: '/dashboard/user/account',
+        children: [{ element: <AccountView />, index: true }],
       },
 
       { path: 'mail', element: <MailPage /> },

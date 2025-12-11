@@ -20,17 +20,19 @@ import { countries } from 'src/assets/data';
 import Iconify from 'src/components/iconify';
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
-  RHFSwitch,
   RHFTextField,
   RHFUploadAvatar,
   RHFAutocomplete,
 } from 'src/components/hook-form';
+import { useBoolean } from 'src/hooks/use-boolean';
+import MultifactorAuthenticationDialog from './multifactor-authentication-dialog';
 
 // ----------------------------------------------------------------------
 
 export default function AccountGeneral() {
   const { enqueueSnackbar } = useSnackbar();
-
+  const multifactorAuthenticationDialog = useBoolean(false);
+  console.log('multifactorAuthenticationDialog', multifactorAuthenticationDialog);
   const { user } = useMockedUser();
 
   const UpdateUserSchema = Yup.object().shape({
@@ -43,7 +45,7 @@ export default function AccountGeneral() {
     state: Yup.string().required('State is required'),
     city: Yup.string().required('City is required'),
     zipCode: Yup.string().required('Zip code is required'),
-    about: Yup.string().required('About is required'),
+
     // not required
     isPublic: Yup.boolean(),
   });
@@ -58,7 +60,6 @@ export default function AccountGeneral() {
     state: user?.state || '',
     city: user?.city || '',
     zipCode: user?.zipCode || '',
-    about: user?.about || '',
     isPublic: user?.isPublic || false,
   };
 
@@ -76,7 +77,7 @@ export default function AccountGeneral() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      enqueueSnackbar('Update success!');
+      // enqueueSnackbar('Update success!');
       console.info('DATA', data);
     } catch (error) {
       console.error(error);
@@ -101,42 +102,6 @@ export default function AccountGeneral() {
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid container spacing={3}>
-        <Grid xs={12} md={4}>
-          <Card sx={{ pt: 10, pb: 5, px: 3, textAlign: 'center' }}>
-            <RHFUploadAvatar
-              name="photoURL"
-              maxSize={3145728}
-              onDrop={handleDrop}
-              helperText={
-                <Typography
-                  variant="caption"
-                  sx={{
-                    mt: 3,
-                    mx: 'auto',
-                    display: 'block',
-                    textAlign: 'center',
-                    color: 'text.disabled',
-                  }}
-                >
-                  Allowed *.jpeg, *.jpg, *.png, *.gif
-                  <br /> max size of {fData(3145728)}
-                </Typography>
-              }
-            />
-
-            <RHFSwitch
-              name="isPublic"
-              labelPlacement="start"
-              label="Public Profile"
-              sx={{ mt: 5 }}
-            />
-
-            <Button variant="soft" color="error" sx={{ mt: 3 }}>
-              Delete User
-            </Button>
-          </Card>
-        </Grid>
-
         <Grid xs={12} md={8}>
           <Card sx={{ p: 3 }}>
             <Box
@@ -186,16 +151,60 @@ export default function AccountGeneral() {
               <RHFTextField name="zipCode" label="Zip/Code" />
             </Box>
 
-            <Stack spacing={3} alignItems="flex-end" sx={{ mt: 3 }}>
-              <RHFTextField name="about" multiline rows={4} label="About" />
-
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                Save Changes
+            <Stack spacing={3} fullWidth sx={{ mt: 3 }}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                loading={isSubmitting}
+                sx={{ backgroundColor: '#006BFF', '&:hover': { background: '#006BFF' } }}
+              >
+                Save
               </LoadingButton>
             </Stack>
           </Card>
         </Grid>
+        <Grid xs={12} md={4}>
+          <Card sx={{ pt: '2rem', pb: 5, px: 3, textAlign: 'center' }}>
+            <RHFUploadAvatar
+              name="photoURL"
+              maxSize={3145728}
+              onDrop={handleDrop}
+              helperText={
+                <Typography
+                  variant="caption"
+                  sx={{
+                    mt: 3,
+                    mx: 'auto',
+                    display: 'block',
+                    textAlign: 'center',
+                    color: 'text.disabled',
+                  }}
+                >
+                  Allowed *.jpeg, *.jpg, *.png, *.gif
+                  <br /> max size of {fData(3145728)}
+                </Typography>
+              }
+            />
+          </Card>
+          <Button
+            onClick={() => multifactorAuthenticationDialog.onTrue()}
+            variant="contained"
+            fullWidth
+            sx={{
+              backgroundColor: '#006BFF',
+              mt: '2rem',
+              '&:hover': { backgroundColor: '#006BFF' },
+            }}
+          >
+            Enable MFA
+          </Button>
+        </Grid>
       </Grid>
+      {multifactorAuthenticationDialog.value && (
+        <MultifactorAuthenticationDialog
+          multifactorAuthenticationDialog={multifactorAuthenticationDialog}
+        />
+      )}
     </FormProvider>
   );
 }
