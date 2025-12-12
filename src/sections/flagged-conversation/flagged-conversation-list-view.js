@@ -21,10 +21,13 @@ import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 // mock
 import { _flaggedConversations } from 'src/_mock';
+import { useBoolean } from 'src/hooks/use-boolean';
+import SuspendAccountDialog from './suspend-acount-dialog';
 
 // ----------------------------------------------------------------------
 
 export default function FlaggedConversationsListView() {
+  const suspendAccountDialog = useBoolean(false);
   const settings = useSettingsContext();
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -288,6 +291,7 @@ export default function FlaggedConversationsListView() {
         </Box>
 
         <Button
+          onClick={() => suspendAccountDialog.onTrue()}
           variant="contained"
           color="error"
           sx={{ backgroundColor: 'red', fontSize: '12px', padding: '0.5rem', borderRadius: 1.5 }}
@@ -574,6 +578,9 @@ export default function FlaggedConversationsListView() {
           {selectedConversation ? renderConversationDetail : renderEmptyState}
         </Grid>
       </Grid>
+      {suspendAccountDialog.value && (
+        <SuspendAccountDialog suspendAccountDialog={suspendAccountDialog} />
+      )}
     </Container>
   );
 }

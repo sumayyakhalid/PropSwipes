@@ -20,7 +20,7 @@ import { _userList } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 import Label from 'src/components/label';
-import AppWidgetSummary from 'src/sections/overview/app/app-widget-summary';
+import AppWidgetSummary from 'src/sections/overview/app/analytics-stats';
 import UserPropertyListing from './user-property-listing';
 
 // ----------------------------------------------------------------------

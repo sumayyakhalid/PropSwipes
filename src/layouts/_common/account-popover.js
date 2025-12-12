@@ -88,7 +88,7 @@ export default function AccountPopover() {
             background: (theme) => alpha(theme.palette.grey[500], 0.08),
             ...(popover.open && {
               background: (theme) =>
-                `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
+                `linear-gradient(135deg, '#006BFF' 0%, ${theme.palette.primary.main} 100%)`,
             }),
           }}
         >
@@ -132,14 +132,14 @@ export default function AccountPopover() {
           ))}
         </Stack>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
-        <MenuItem
+        {/* <MenuItem
           onClick={handleLogout}
           sx={{ m: 1, fontWeight: 'fontWeightBold', color: 'error.main' }}
         >
           Logout
-        </MenuItem>
+        </MenuItem> */}
       </CustomPopover>
     </>
   );

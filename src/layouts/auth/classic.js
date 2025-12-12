@@ -73,8 +73,9 @@ export default function AuthClassicLayout({ children, image, title, hideRightSec
           ? 'none'
           : `url('/assets/illustrations/illustration_dashboard.jpg')`,
         maxWidth: 480,
+
         px: { xs: 0.5, md: 1 },
-        py: { xs: 15, md: 30 },
+        py: { xs: 15, md: 13, lg: 'auto' },
         backgroundColor: 'white',
       }}
     >
@@ -84,7 +85,7 @@ export default function AuthClassicLayout({ children, image, title, hideRightSec
 
   const renderSection = (
     <Stack
-      flexGrow={1}
+      flexGrow={0.8}
       alignItems="center"
       justifyContent="center"
       spacing={10}
@@ -98,7 +99,7 @@ export default function AuthClassicLayout({ children, image, title, hideRightSec
         component="img"
         alt="auth"
         src={image || '/assets/illustrations/propState_logo.png'}
-        sx={{ maxWidth: 180 }}
+        sx={{ maxWidth: 200 }}
       />
     </Stack>
   );
@@ -111,10 +112,10 @@ export default function AuthClassicLayout({ children, image, title, hideRightSec
         backgroundImage: hideRightSection
           ? `url('/assets/illustrations/illustration_dashboard.jpg')`
           : 'none',
+
+        backgroundColor: 'white',
       }}
     >
-      {/* {renderLogo} */}
-
       {renderContent}
       {upMd && !hideRightSection && renderSection}
     </Stack>

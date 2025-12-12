@@ -4,24 +4,33 @@ import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 // hooks
+import { Divider } from '@mui/material';
 import { useResponsive } from 'src/hooks/use-responsive';
 // hooks
 import { useMockedUser } from 'src/hooks/use-mocked-user';
+import { useAuthContext } from 'src/auth/hooks';
+// routes
+import { useRouter, usePathname } from 'src/routes/hooks';
 // components
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
-import { usePathname } from 'src/routes/hooks';
+import Iconify from 'src/components/iconify';
 import { NavSectionVertical } from 'src/components/nav-section';
 //
 import { NAV } from '../config-layout';
 import { useNavData } from './config-navigation';
-import { NavToggleButton, NavUpgrade } from '../_common';
+import { NavToggleButton } from '../_common';
 
 // ----------------------------------------------------------------------
 
 export default function NavVertical({ openNav, onCloseNav }) {
   const { user } = useMockedUser();
+  const { logout } = useAuthContext();
+  const router = useRouter();
 
   const pathname = usePathname();
 
@@ -35,6 +44,15 @@ export default function NavVertical({ openNav, onCloseNav }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.replace('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const renderContent = (
     <Scrollbar
@@ -57,8 +75,30 @@ export default function NavVertical({ openNav, onCloseNav }) {
       />
 
       <Box sx={{ flexGrow: 1 }} />
+      <Divider sx={{ my: 2 }} />
 
-      {/* <NavUpgrade /> */}
+      {/* Logout Button */}
+      <Box sx={{ px: 2, pb: 2 }}>
+        <ListItemButton
+          onClick={handleLogout}
+          sx={{
+            borderRadius: 1,
+            minHeight: 48,
+            gap: 1,
+          }}
+        >
+          <img src="/assets/icons/components/logout.svg" alt="logout" />
+
+          <ListItemText
+            primary="Log out"
+            primaryTypographyProps={{
+              typography: 'body2',
+              fontWeight: 'fontWeightMedium',
+              color: '#637381',
+            }}
+          />
+        </ListItemButton>
+      </Box>
     </Scrollbar>
   );
 

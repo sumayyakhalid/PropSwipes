@@ -9,10 +9,10 @@ import { useMockedUser } from 'src/hooks/use-mocked-user';
 import { _reviewStatusOverview } from 'src/_mock';
 // components
 import { useSettingsContext } from 'src/components/settings';
-import AppWidgetSummary from '../app-widget-summary';
-import AnalyticsCurrentVisits from '../../analytics/analytics-current-visits';
-import ReviewStatusOverview from '../../e-commerce/ecommerce-sales-overview';
 
+import SubscriptionDistribution from './subscription-distribution';
+import AnalyticsStats from '../analytics-stats';
+import ReviewStatusOverview from '../review-status-overview';
 // ----------------------------------------------------------------------
 
 export default function OverviewAppView() {
@@ -27,7 +27,7 @@ export default function OverviewAppView() {
       <Typography variant="h4">Analytics & Oversight</Typography>
       <Grid container spacing={2} sx={{ mt: 2 }}>
         <Grid xs={12} md={2.4}>
-          <AppWidgetSummary
+          <AnalyticsStats
             title="Total Users"
             percent={2.6}
             total={190}
@@ -36,7 +36,7 @@ export default function OverviewAppView() {
         </Grid>
 
         <Grid xs={12} md={2.4}>
-          <AppWidgetSummary
+          <AnalyticsStats
             title="Total Property Listings"
             percent={0.2}
             total={12}
@@ -52,7 +52,7 @@ export default function OverviewAppView() {
         </Grid>
 
         <Grid xs={12} md={2.4}>
-          <AppWidgetSummary
+          <AnalyticsStats
             title="Pending Listings"
             percent={-0.1}
             total={700}
@@ -67,7 +67,7 @@ export default function OverviewAppView() {
           />
         </Grid>
         <Grid xs={12} md={2.4}>
-          <AppWidgetSummary
+          <AnalyticsStats
             title="Active Subscriptions"
             percent={-0.1}
             total={678}
@@ -82,7 +82,7 @@ export default function OverviewAppView() {
           />
         </Grid>
         <Grid xs={12} md={2.4}>
-          <AppWidgetSummary
+          <AnalyticsStats
             title="Suspended Acounts"
             percent={-0.1}
             total={678}
@@ -98,7 +98,7 @@ export default function OverviewAppView() {
         </Grid>
 
         <Grid xs={12} md={6} lg={4}>
-          <AnalyticsCurrentVisits
+          <SubscriptionDistribution
             title="Subscription Distribution"
             chart={{
               series: [
