@@ -20,6 +20,7 @@ import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import { useSettingsContext } from 'src/components/settings';
 import { _userList } from 'src/_mock';
 import { useBoolean } from 'src/hooks/use-boolean';
+import { useRouter } from 'src/routes/hooks';
 import RejectPropertyDialog from './reject-property-dialog';
 
 // ----------------------------------------------------------------------
@@ -45,6 +46,7 @@ const AMENITIES = [
 // ----------------------------------------------------------------------
 
 export default function PropertyDetailPage({ currentProperty }) {
+  const router = useRouter();
   const settings = useSettingsContext();
   const rejectPropertyDialog = useBoolean(false);
 
@@ -84,8 +86,6 @@ export default function PropertyDetailPage({ currentProperty }) {
     fees,
     lotSize,
     builtYear,
-    listedDate,
-    type,
     description,
     key_Features,
   } = currentUserListing;
@@ -98,6 +98,7 @@ export default function PropertyDetailPage({ currentProperty }) {
   const amenities = key_Features?.amenities || AMENITIES;
   const appliances = key_Features?.appliances;
   const interior_features = key_Features?.interior_features;
+  console.log('user Details', currentUserDetails);
 
   return (
     <>
@@ -370,7 +371,12 @@ export default function PropertyDetailPage({ currentProperty }) {
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -389,7 +395,12 @@ export default function PropertyDetailPage({ currentProperty }) {
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -408,7 +419,12 @@ export default function PropertyDetailPage({ currentProperty }) {
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -427,7 +443,12 @@ export default function PropertyDetailPage({ currentProperty }) {
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -437,7 +458,7 @@ export default function PropertyDetailPage({ currentProperty }) {
                           height={16}
                         />
                         <Typography variant="body2" sx={{ color: '#919EAB', fontSize: '12px' }}>
-                          Year Built:
+                          Year Built <br />
                           {builtYear}
                         </Typography>
                       </Box>
@@ -447,7 +468,12 @@ export default function PropertyDetailPage({ currentProperty }) {
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -457,17 +483,22 @@ export default function PropertyDetailPage({ currentProperty }) {
                           height={16}
                         />
                         <Typography variant="body2" sx={{ color: '#919EAB', fontSize: '12px' }}>
-                          Parking:
                           {parking}
                         </Typography>
                       </Box>
                       <Box
                         sx={{
+                          backgroundColor: '#F9FAFB',
                           border: '1px solid #E0E0E0',
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -477,7 +508,7 @@ export default function PropertyDetailPage({ currentProperty }) {
                           height={16}
                         />
                         <Typography variant="body2" sx={{ color: '#919EAB', fontSize: '12px' }}>
-                          Lot Size:
+                          Lot Size: <br />
                           {lotSize}
                         </Typography>
                       </Box>
@@ -488,7 +519,12 @@ export default function PropertyDetailPage({ currentProperty }) {
                           borderRadius: 1,
                           padding: 1,
                           width: 'auto',
-                          height: 'auto',
+                          minWidth: '72px',
+                          height: '65px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
                         <img
@@ -527,84 +563,72 @@ export default function PropertyDetailPage({ currentProperty }) {
             <Card sx={{ p: 1 }}>
               <Typography variant="subtitle2">Amenities</Typography>
               <Divider sx={{ my: 1 }} />
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 1,
-                }}
-              >
+              <Grid container spacing={2}>
                 {amenities.map((amenity) => (
-                  <Stack
-                    key={amenity}
-                    direction="row"
-                    spacing={1.3}
-                    alignItems="center"
-                    sx={{ display: 'flex' }}
-                  >
-                    <img src={amenity.icon} alt="swimming_pool" width={39} height={44} />
-                    <Typography variant="body2" sx={{ color: '#919EAB' }}>
-                      {amenity.name}
-                    </Typography>
-                  </Stack>
+                  <Grid xs={12} sm={6} md={3} key={amenity.name || amenity}>
+                    <Stack direction="row" spacing={1.5} alignItems="center" sx={{ width: '100%' }}>
+                      <img
+                        src={amenity.icon || amenity}
+                        alt={amenity.name || amenity}
+                        width={32}
+                        height={32}
+                      />
+
+                      <Typography variant="body2" sx={{ color: '#919EAB' }}>
+                        {amenity.name || amenity}
+                      </Typography>
+                    </Stack>
+                  </Grid>
                 ))}
-              </Box>
+              </Grid>
             </Card>
 
             {/* Appliances */}
             <Card sx={{ p: 1, mt: 2 }}>
               <Typography variant="subtitle2">Appliances</Typography>
               <Divider sx={{ my: 1 }} />
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 1,
-                }}
-              >
+              <Grid container spacing={2}>
                 {appliances.map((appliance) => (
-                  <Stack
-                    key={appliance}
-                    direction="row"
-                    spacing={1.3}
-                    alignItems="center"
-                    sx={{ display: 'flex' }}
-                  >
-                    <img src={appliance.icon} alt="appliances" width={39} height={44} />
-                    <Typography variant="body2" sx={{ color: '#919EAB' }}>
-                      {appliance.name}
-                    </Typography>
-                  </Stack>
+                  <Grid xs={12} sm={6} md={4} key={appliance.name || appliance}>
+                    <Stack direction="row" spacing={1.5} alignItems="center" sx={{ width: '100%' }}>
+                      <img
+                        src={appliance.icon || appliance}
+                        alt={appliance.name || appliance}
+                        width={32}
+                        height={32}
+                      />
+
+                      <Typography variant="body2" sx={{ color: '#919EAB' }}>
+                        {appliance.name || appliance}
+                      </Typography>
+                    </Stack>
+                  </Grid>
                 ))}
-              </Box>
+              </Grid>
             </Card>
 
             {/* Interior Features */}
             <Card sx={{ p: 1, mt: 2 }}>
               <Typography variant="subtitle2">Interior Features</Typography>
               <Divider sx={{ my: 1 }} />
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 1,
-                }}
-              >
+              <Grid container spacing={2}>
                 {interior_features.map((feature) => (
-                  <Stack
-                    key={feature}
-                    direction="row"
-                    spacing={1.3}
-                    alignItems="center"
-                    sx={{ display: 'flex' }}
-                  >
-                    <img src={feature.icon} alt="appliances" width={39} height={44} />
-                    <Typography variant="body2" sx={{ color: '#919EAB' }}>
-                      {feature.name}
-                    </Typography>
-                  </Stack>
+                  <Grid xs={12} sm={6} md={4} key={feature.name || feature}>
+                    <Stack direction="row" spacing={1.5} alignItems="center" sx={{ width: '100%' }}>
+                      <img
+                        src={feature.icon || feature}
+                        alt={feature.name || feature}
+                        width={32}
+                        height={32}
+                      />
+
+                      <Typography variant="body2" sx={{ color: '#919EAB' }}>
+                        {feature.name || feature}
+                      </Typography>
+                    </Stack>
+                  </Grid>
                 ))}
-              </Box>
+              </Grid>
             </Card>
           </Grid>
 
@@ -631,7 +655,16 @@ export default function PropertyDetailPage({ currentProperty }) {
                         Seller
                       </Typography>
                     </Box>
-                    <Iconify icon="solar:eye-bold" width={18} sx={{ color: 'text.secondary' }} />
+                    <Iconify
+                      icon="solar:eye-bold"
+                      width={18}
+                      sx={{ color: 'text.secondary' }}
+                      onClick={() =>
+                        router.push(
+                          `/subscriber-management/${currentUserDetails?.id}/subscriber-detail`
+                        )
+                      }
+                    />
                   </Stack>
                 </Stack>
 
